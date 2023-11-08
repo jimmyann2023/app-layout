@@ -1,0 +1,6 @@
+dist
+node_modules
+/prettierrc.js
+/src/vite-env.d.ts
+/commitlint.config.cjs
+.eslintrc.cjs
