@@ -1,5 +1,20 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import { setupRouter } from '@/router';
+import { setupStore } from '@/store';
+import App from './App.vue';
+import 'uno.css';
+import './style.css';
 
-createApp(App).mount('#app')
+async function bootstrap() {
+  const app = createApp(App);
+
+  // 配置 store
+  setupStore(app);
+
+  // 配置路由
+  setupRouter(app);
+
+  app.mount('#app');
+}
+
+bootstrap();

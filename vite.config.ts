@@ -38,6 +38,7 @@ export default defineConfig(({ mode }) => {
     },
 
     base: VITE_PUBLIC_PATH,
+
     resolve: {
       alias: [
         {
@@ -56,11 +57,11 @@ export default defineConfig(({ mode }) => {
         },
       ],
     },
+
     plugins: [
       vue(),
       vueJsx(),
       UnoCSS(),
-
       createSvgIconsPlugin({
         // Specify the icon folder to be cached
         iconDirs: [resolve(CWD, 'src/assets/icons')],
