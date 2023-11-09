@@ -1,4 +1,4 @@
-import { t } from '@/hooks/useI18';
+import { t } from '@/hooks/useI18n';
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '@/router/config/basic';
 import type { AppRouteModule, AppRouteRecordRaw } from '@/router/types';
 

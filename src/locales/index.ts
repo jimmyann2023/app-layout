@@ -35,9 +35,8 @@ export let i18n: Awaited<typeof getI18n>;
 
 getI18n.then((res) => (i18n = res));
 
-// setup i18n instance with glob
+// setup i18n instance with global
 export async function setupI18n(app: App) {
-  const options = await createI18nOptions();
-  i18n = createI18n(options);
+  await getI18n;
   app.use(i18n);
 }

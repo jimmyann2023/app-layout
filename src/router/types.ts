@@ -6,7 +6,7 @@ export type Component<T = any> =
   | (() => Promise<typeof import('*.vue')>)
   | (() => Promise<T>);
 
-// @ts-ignore
+// @ts-ignore Omit 表示除了 RouteRecordRaw中的 meta 属性
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   name: string;
   meta: RouteMeta;

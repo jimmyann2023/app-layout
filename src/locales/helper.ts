@@ -1,5 +1,6 @@
 import { set } from 'lodash-es';
 import type { LocaleType } from './config';
+
 export const loadLocalePool: LocaleType[] = [];
 
 export function setHtmlPageLang(locale: LocaleType) {
