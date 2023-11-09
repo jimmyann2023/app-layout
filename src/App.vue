@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { useI18n } from '@/hooks/useI18n';
 const { t } = useI18n();
+import { useUserStoreWithOut } from '@/store/modules/user';
 import HelloWorld from './components/HelloWorld.vue';
+
+const store = useUserStoreWithOut();
+const login = () => {
+  return store.afterLoginAction();
+};
+login();
 </script>
 
 <template>

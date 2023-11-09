@@ -1,7 +1,7 @@
 import type { App } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router';
-import { basicRoutes } from './config';
+import { basicRoutes } from './modules/index';
 
 // 白名单应该包含基本静态路由
 const WHITE_NAME_LIST: string[] = [];

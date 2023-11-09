@@ -1,0 +1,110 @@
+import type { RouteRecordNormalized } from 'vue-router';
+import { pathToRegexp } from 'path-to-regexp';
+import { PermissionModeEnum } from '@/enums/appEnum';
+import { router } from '@/router';
+import type { Menu, MenuModule } from '@/router/types';
+import { useAppStoreWithOut } from '@/store/modules/app';
+import { usePermissionStore } from '@/store/modules/permission';
+import { filter } from '@/utils/helper/treeHelper';
+import { isHttpUrl } from '@/utils/is';
+import { transformMenuModule } from '../helper/menuHelper';
+
+// const staicModules = import.meta.glob('./staicModules/**/*.ts', { eager: true });
+// const asyncModules = import.meta.glob('./asyncModules/**/*.ts', { eager: true });
+// const modules = { ...staicModules, ...asyncModules };
+
+const modules = import.meta.glob('./asyncModules/**/*.ts', { eager: true });
+const menuModules: MenuModule[] = [];
+
+Object.keys(modules).forEach((key) => {
+  const mod = (modules as Recordable)[key].default || {};
+  const modList = Array.isArray(mod) ? [...mod] : [mod];
+  menuModules.push(...modList);
+});
+
+// ===========================
+// ==========Helper===========
+// ===========================
+
+const getPermissionMode = () => {
+  const appStore = useAppStoreWithOut();
+  return appStore.getProjectConfig.permissionMode;
+};
+
+const isBackMode = () => {
+  return getPermissionMode() === PermissionModeEnum.BACK;
+};
+
+const isRouteMappingMode = () => {
+  return getPermissionMode() === PermissionModeEnum.ROUTE_MAPPING;
+};
+
+const isRoleMode = () => {
+  return getPermissionMode() === PermissionModeEnum.ROLE;
+};
+
+const staticMenus: Menu[] = [];
+(() => {
+  menuModules.sort((a, b) => {
+    return (a.orderNo || 0) - (b.orderNo || 0);
+  });
+
+  for (const menu of menuModules) {
+    staticMenus.push(transformMenuModule(menu));
+  }
+})();
+
+//递归过滤所有隐藏的菜单
+const menuFilter = (items: any[]) => {
+  return items.filter((item) => {
+    const show = !item.meta.hideMenu && !item.hideMenu;
+    if (show && item.children) {
+      item.children = menuFilter(item.children);
+    }
+    return show;
+  });
+};
+
+async function getAsyncMenus() {
+  const permissionStore = usePermissionStore();
+
+  if (isBackMode()) {
+    return menuFilter(permissionStore.getBackMenuList);
+  }
+
+  if (isRouteMappingMode()) {
+    return menuFilter(permissionStore.getFrontMenuList);
+  }
+  return staticMenus;
+}
+
+export const getMenus = async (): Promise<Menu[]> => {
+  const menus = await getAsyncMenus();
+  if (isRoleMode()) {
+    const routes = router.getRoutes();
+    return filter(menus, basicFilter(routes));
+  }
+  return menus;
+};
+
+function basicFilter(routes: RouteRecordNormalized[]) {
+  return (menu: Menu) => {
+    const matchRoute = routes.find((route) => {
+      if (isHttpUrl(menu.path!)) return true;
+
+      if (route.meta?.carrParam) {
+        return pathToRegexp(route.path).test(menu.path!);
+      }
+      const isSame = route.path === menu.path;
+      if (!isSame) return false;
+
+      if (route.meta?.ignoreAuth) return true;
+      return isSame || pathToRegexp(route.path).test(menu.path!);
+    });
+
+    if (!matchRoute) return false;
+    menu.icon = (menu.icon || matchRoute.meta.icon) as string;
+    menu.meta = matchRoute.meta;
+    return true;
+  };
+}
