@@ -1,6 +1,3 @@
-/**
- * @type {import('stylelint').Config}
- */
 module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-property-sort-order-smacss'],
   plugins: ['stylelint-order', 'stylelint-prettier'],
@@ -15,9 +12,17 @@ module.exports = {
       customSyntax: 'postcss-less',
       extends: ['stylelint-config-standard', 'stylelint-config-recommended-vue'],
     },
+    {
+      files: ['*.scss', '**/*.scss'],
+      customSyntax: 'postcss-scss',
+      extends: ['stylelint-config-standard-scss', 'stylelint-config-recommended-vue/scss'],
+      rule: {
+        'scss/percent-placeholder-pattern': null,
+      },
+    },
   ],
   rules: {
-    'value-keyword-case': null,
+    'media-feature-range-notation': null,
     'selector-not-notation': null,
     'import-notation': null,
     'function-no-unknown': null,
@@ -31,7 +36,7 @@ module.exports = {
     'selector-pseudo-element-no-unknown': [
       true,
       {
-        ignorePseudoElements: ['v-deep', 'v-global', 'v-slotted'],
+        ignorePseudoElements: ['v-deep'],
       },
     ],
     'at-rule-no-unknown': [

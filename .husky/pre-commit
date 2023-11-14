@@ -2,4 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 # 在git 暂存区 进行检查
 # 我们每次提交代码前都会对改动的文件进行 Lint 检查和prettier格式化。
-npx lint-staged
+pnpm lint-staged

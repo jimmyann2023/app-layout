@@ -4,6 +4,8 @@ import HelloWorld from './components/HelloWorld.vue';
 
 <template>
   <div>
+    <div class="txt">aaa</div>
+    <button class="txt">bbb</button>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
@@ -14,4 +16,8 @@ import HelloWorld from './components/HelloWorld.vue';
   <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped></style>
+<style scoped lang="less">
+.txt {
+  color: @primary-color;
+}
+</style>
