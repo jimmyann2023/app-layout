@@ -17,6 +17,9 @@ dependencies:
   axios:
     specifier: ^1.6.0
     version: 1.6.1
+  crypto-js:
+    specifier: ^4.2.0
+    version: 4.2.0
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
@@ -29,6 +32,9 @@ dependencies:
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.2.2)(vue@3.3.8)
+  pinia-plugin-persistedstate:
+    specifier: ^3.2.0
+    version: 3.2.0(pinia@2.1.7)
   vue:
     specifier: ^3.3.4
     version: 3.3.8(typescript@5.2.2)
@@ -49,6 +55,9 @@ devDependencies:
   '@commitlint/config-conventional':
     specifier: ^18.1.0
     version: 18.4.0
+  '@types/crypto-js':
+    specifier: ^4.2.1
+    version: 4.2.1
   '@types/node':
     specifier: ^20.9.0
     version: 20.9.0
@@ -1141,6 +1150,10 @@ packages:
 
   /@tsconfig/node16@1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
+    dev: true
+
+  /@types/crypto-js@4.2.1:
+    resolution: {integrity: sha512-FSPGd9+OcSok3RsM0UZ/9fcvMOXJ1ENE/ZbLfOPlBWj7BgXtEAM8VYfTtT760GiLbQIMoVozwVuisjvsVwqYWw==}
     dev: true
 
   /@types/estree@1.0.5:
@@ -2563,6 +2576,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    dev: false
 
   /css-functions-list@3.2.1:
     resolution: {integrity: sha512-Nj5YcaGgBtuUmn1D7oHqPW0c9iui7xsTsj5lIX8ZgevdfhmjFfKB3r8moHJtNJnctnYXJyYX5I1pp90HM4TPgQ==}
@@ -5438,6 +5455,14 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /pinia-plugin-persistedstate@3.2.0(pinia@2.1.7):
+    resolution: {integrity: sha512-tZbNGf2vjAQcIm7alK40sE51Qu/m9oWr+rEgNm/2AWr1huFxj72CjvpQcIQzMknDBJEkQznCLAGtJTIcLKrKdw==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: 2.1.7(typescript@5.2.2)(vue@3.3.8)
+    dev: false
 
   /pinia@2.1.7(typescript@5.2.2)(vue@3.3.8):
     resolution: {integrity: sha512-+C2AHFtcFqjPih0zpYuvof37SFxMQ7OEG2zV9jRI12i9BOy3YQVAHwdKtyyc8pDcDyIc33WCIsZaCFWU7WWxGQ==}
