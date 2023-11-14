@@ -17,7 +17,10 @@ import HelloWorld from './components/HelloWorld.vue';
 </template>
 
 <style scoped lang="less">
-.txt {
-  color: @primary-color;
+/* namespace已经全局注入，不需要额外在引入 */
+@prefix-cls: ~'@{namespace}-app-logo';
+
+.@{prefix-cls} {
+  width: 100%;
 }
 </style>
