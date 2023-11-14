@@ -1,7 +1,9 @@
 import { createApp } from 'vue';
 import Antd from 'ant-design-vue';
-import { initAppConfigStore } from '@/settings/initAppConfig';
+import { setupI18n } from '@/locales/setupI18n';
+import { setupRouter } from '@/router';
 import { setupStore } from '@/store';
+import { initAppConfigStore } from './settings/initAppConfig';
 import App from './App.vue';
 import '@/styles/index.less';
 import 'uno.css';
@@ -15,6 +17,13 @@ async function bootstrap() {
 
   // 初始化内部系统配置
   initAppConfigStore();
+
+  // 多语言配置
+  // 异步案例：语言文件可能从服务器端获取
+  await setupI18n(app);
+
+  // 配置路由
+  setupRouter(app);
 
   app.use(Antd);
   app.mount('#app');
