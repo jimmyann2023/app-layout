@@ -1,5 +1,6 @@
 <template>
   <Layout :class="prefixCls">
+    <LayoutHeader fixed />
     <Layout :class="[layoutClass, `${prefixCls}-out`]">
       <LayoutSideBar />
       <Layout :class="`${prefixCls}-main`">
@@ -12,11 +13,12 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import { useDesign } from '@/hooks/web/useDesign';
+import LayoutHeader from './header/index.vue';
 import LayoutSideBar from './sider/index.vue';
 
 export default defineComponent({
   name: 'DefaultLayout',
-  components: { LayoutSideBar },
+  components: { LayoutSideBar, LayoutHeader },
   setup() {
     const { prefixCls } = useDesign('default-layout');
     const layoutClass = computed(() => {
