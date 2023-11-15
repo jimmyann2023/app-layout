@@ -45,4 +45,6 @@ export const basicRoutes = [
   ...mainOutRoutes,
   REDIRECT_ROUTE,
   PAGE_NOT_FOUND_ROUTE,
+  // TODO: 这里暂时通过 还没有添加 路由守卫
+  ...asyncRoutes,
 ];
