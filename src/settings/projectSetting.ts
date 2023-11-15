@@ -16,7 +16,7 @@ import {
 
 import type { ProjectConfig } from '#/config';
 
-// ! 改动后需要清空浏览器缓存
+// 改动后需要清空浏览器缓存
 const setting: ProjectConfig = {
   // 是否显示SettingButton
   showSettingButton: true,
