@@ -1,7 +1,6 @@
-import { defHttp } from '@/utils/http/axios';
+import type { BaseResponse } from '@/utils/http/request';
+import { request } from '@/utils/http/request';
 import { GetUserInfoModel, LoginParams, LoginResultModel } from './model/userModel';
-
-import { ErrorMessageMode } from '#/axios';
 
 enum Api {
   Login = '/login',
@@ -11,45 +10,52 @@ enum Api {
   TestRetry = '/testRetry',
 }
 
+export function updateAccountInfo(data: any) {
+  return request<BaseResponse<any>>({
+    url: 'account/update',
+    method: 'post',
+    data,
+  });
+}
+
 /**
  * @description: user login api
  */
-export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') {
-  return defHttp.post<LoginResultModel>(
-    {
-      url: Api.Login,
-      params,
-    },
-    {
-      errorMessageMode: mode,
-    },
-  );
+export function loginApi(data: LoginParams) {
+  return request<BaseResponse<LoginResultModel>>({
+    url: Api.Login,
+    method: 'post',
+    data,
+  });
 }
 
 /**
  * @description: getUserInfo
  */
 export function getUserInfo() {
-  return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }, { errorMessageMode: 'none' });
+  return request<GetUserInfoModel>({
+    url: Api.GetUserInfo,
+    method: 'get',
+  });
 }
 
 export function getPermCode() {
-  return defHttp.get<string[]>({ url: Api.GetPermCode });
+  return request<string[]>({
+    url: Api.GetPermCode,
+    method: 'get',
+  });
 }
 
 export function doLogout() {
-  return defHttp.get({ url: Api.Logout });
+  return request({
+    url: Api.Logout,
+    method: 'get',
+  });
 }
 
 export function testRetry() {
-  return defHttp.get(
-    { url: Api.TestRetry },
-    {
-      retryRequest: {
-        isOpenRetry: true,
-        count: 5,
-        waitTime: 1000,
-      },
-    },
-  );
+  return request<BaseResponse<any>>({
+    url: Api.TestRetry,
+    method: 'get',
+  });
 }
