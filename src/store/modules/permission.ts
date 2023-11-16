@@ -160,7 +160,7 @@ export const usePermissionStore = defineStore({
         }
         return;
       };
-
+      console.log('权限路由模式', permissionMode);
       switch (permissionMode) {
         // 角色权限
         case PermissionModeEnum.ROLE: {
@@ -171,11 +171,13 @@ export const usePermissionStore = defineStore({
           // Convert multi-level routing to level 2 routing
           // 将多级路由转换为 2 级路由
           routes = flatMultiLevelRoutes(routes);
+          console.log('permiss-routes', routes);
           break;
         }
 
         // 路由映射， 默认进入该case
         case PermissionModeEnum.ROUTE_MAPPING: {
+          console.log('开始准备==>路由映射模式');
           // 对非一级路由进行过滤
           routes = filter(asyncRoutes, routeFilter);
           // 对一级路由再次根据角色权限过滤
@@ -249,7 +251,6 @@ export const usePermissionStore = defineStore({
   },
 });
 
-// Need to be used outside the setup
 // 需要在设置之外使用
 export function usePermissionStoreWithOut() {
   return usePermissionStore(store);

@@ -22,7 +22,7 @@ export function updateAccountInfo(data: any) {
  * @description: user login api
  */
 export function loginApi(data: LoginParams) {
-  return request<BaseResponse<LoginResultModel>>({
+  return request<LoginResultModel>({
     url: Api.Login,
     method: 'post',
     data,

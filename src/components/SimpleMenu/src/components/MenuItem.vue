@@ -1,158 +1,106 @@
 <template>
-  <ul :class="getClass">
-    <slot></slot>
-  </ul>
+  <li :class="getClass" @click.stop="handleClickItem" :style="getCollapse ? {} : getItemStyle">
+    <Tooltip placement="right" v-if="showTooptip">
+      <template #title>
+        <slot name="title"></slot>
+      </template>
+      <div :class="`${prefixCls}-tooltip`">
+        <slot></slot>
+      </div>
+    </Tooltip>
+
+    <template v-else>
+      <slot></slot>
+      <slot name="title"></slot>
+    </template>
+  </li>
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  nextTick,
-  onMounted,
-  provide,
-  ref,
-  watch,
-  watchEffect,
-} from 'vue';
+import { computed, defineComponent, getCurrentInstance, PropType, ref, unref, watch } from 'vue';
+import { Tooltip } from 'ant-design-vue';
 import { useDesign } from '@/hooks/web/useDesign';
-import { mitt } from '@/utils/mitt';
 import { propTypes } from '@/utils/propTypes';
-import type { SubMenuProvider } from './types';
-import { createSimpleRootMenuContext, type MenuEmitterEvents } from './useSimpleMenuContext';
+import { useMenuItem } from './useMenu';
+import { useSimpleRootMenuContext } from './useSimpleMenuContext';
 
 export default defineComponent({
   name: 'MenuItem',
+  components: { Tooltip },
   props: {
-    theme: propTypes.oneOf(['light', 'dark']).def('light'),
-    activeName: propTypes.oneOfType([propTypes.string, propTypes.number]),
-    openNames: {
-      type: Array as PropType<string[]>,
-      default: () => [],
+    name: {
+      type: [String, Number] as PropType<string | number>,
+      required: true,
     },
-    accordion: propTypes.bool.def(true),
-    width: propTypes.string.def('100%'),
-    collapsedWidth: propTypes.string.def('48px'),
-    indentSize: propTypes.number.def(16),
-    collapse: propTypes.bool.def(true),
-    activeSubMenuNames: {
-      type: Array as PropType<(string | number)[]>,
-      default: () => [],
-    },
+    disabled: propTypes.bool,
   },
-  emits: ['select', 'open-change'],
-  setup(props, { emit }) {
-    const rootMenuEmitter = mitt<MenuEmitterEvents>();
+  setup(props, { slots }) {
     const instance = getCurrentInstance();
 
-    const currentActiveName = ref<string | number>('');
-    const openedNames = ref<(string | number)[]>([]);
+    const active = ref(false);
+
+    const { getItemStyle, getParentList, getParentMenu, getParentRootMenu } = useMenuItem(instance);
 
     const { prefixCls } = useDesign('menu');
 
-    const isRemoveAllPopup = ref(false);
-
-    createSimpleRootMenuContext({
-      rootMenuEmitter: rootMenuEmitter,
-      activeName: currentActiveName,
-    });
+    const { rootMenuEmitter, activeName } = useSimpleRootMenuContext();
 
     const getClass = computed(() => {
-      const { theme } = props;
       return [
-        prefixCls,
-        `${prefixCls}-${theme}`,
-        `${prefixCls}-vertical`,
+        `${prefixCls}-item`,
         {
-          [`${prefixCls}-collapse`]: props.collapse,
+          [`${prefixCls}-item-active`]: unref(active),
+          [`${prefixCls}-item-selected`]: unref(active),
+          [`${prefixCls}-item-disabled`]: !!props.disabled,
         },
       ];
     });
 
-    watchEffect(() => {
-      openedNames.value = props.openNames;
+    const getCollapse = computed(() => unref(getParentRootMenu)?.props.collapse);
+
+    const showTooptip = computed(() => {
+      return unref(getParentMenu)?.type.name === 'Menu' && unref(getCollapse) && slots.title;
     });
 
-    watchEffect(() => {
-      if (props.activeName) {
-        currentActiveName.value = props.activeName;
+    function handleClickItem() {
+      const { disabled } = props;
+      if (disabled) {
+        return;
       }
-    });
 
+      rootMenuEmitter.emit('on-menu-item-select', props.name);
+      if (unref(getCollapse)) {
+        return;
+      }
+      const { uidList } = getParentList();
+
+      rootMenuEmitter.emit('on-update-opened', {
+        opend: false,
+        parent: instance?.parent,
+        uidList: uidList,
+      });
+    }
     watch(
-      () => props.openNames,
-      () => {
-        nextTick(() => {
-          updateOpened();
-        });
+      () => activeName.value,
+      (name: string | number) => {
+        if (name === props.name) {
+          const { list, uidList } = getParentList();
+          active.value = true;
+          list.forEach((item) => {
+            if (item.proxy) {
+              (item.proxy as any).active = true;
+            }
+          });
+
+          rootMenuEmitter.emit('on-update-active-name:submenu', uidList);
+        } else {
+          active.value = false;
+        }
       },
+      { immediate: true },
     );
 
-    function updateOpened() {
-      rootMenuEmitter.emit('on-update-opened', openedNames.value);
-    }
-
-    function addSubMenu(name: string | number) {
-      if (openedNames.value.includes(name)) return;
-      openedNames.value.push(name);
-      updateOpened();
-    }
-
-    function removeSubMenu(name: string | number) {
-      openedNames.value = openedNames.value.filter((item) => item !== name);
-      updateOpened();
-    }
-
-    function removeAll() {
-      openedNames.value = [];
-      updateOpened();
-    }
-
-    function sliceIndex(index: number) {
-      if (index === -1) return;
-      openedNames.value = openedNames.value.slice(0, index + 1);
-      updateOpened();
-    }
-
-    provide<SubMenuProvider>(`subMenu:${instance?.uid}`, {
-      addSubMenu,
-      removeSubMenu,
-      getOpenNames: () => openedNames.value,
-      removeAll,
-      isRemoveAllPopup,
-      sliceIndex,
-      level: 0,
-      props: props as any,
-    });
-
-    onMounted(() => {
-      openedNames.value = !props.collapse ? [...props.openNames] : [];
-      updateOpened();
-      rootMenuEmitter.on('on-menu-item-select', (name: string | number) => {
-        currentActiveName.value = name;
-
-        nextTick(() => {
-          props.collapse && removeAll();
-        });
-        emit('select', name);
-      });
-
-      rootMenuEmitter.on('open-name-change', ({ name, opened }) => {
-        if (opened && !openedNames.value.includes(name)) {
-          openedNames.value.push(name);
-        } else if (!opened) {
-          const index = openedNames.value.findIndex((item) => item === name);
-          index !== -1 && openedNames.value.splice(index, 1);
-        }
-      });
-    });
-
-    return { getClass, openedNames };
+    return { getClass, prefixCls, getItemStyle, getCollapse, handleClickItem, showTooptip };
   },
 });
 </script>
-<style lang="less">
-@import url('./menu.less');
-</style>

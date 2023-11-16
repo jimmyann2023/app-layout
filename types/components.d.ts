@@ -7,10 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ALayoutContent: (typeof import('ant-design-vue/es'))['LayoutContent'];
-    ALayoutFooter: (typeof import('ant-design-vue/es'))['LayoutFooter'];
-    ALayoutHeader: (typeof import('ant-design-vue/es'))['LayoutHeader'];
-    AMenu: (typeof import('./../src/components/SimpleMenu/src/components/AMenu.vue'))['default'];
     AppProvider: (typeof import('./../src/components/Application/src/AppProvider.vue'))['default'];
     BasicMenu: (typeof import('./../src/components/Menu/src/BasicMenu.vue'))['default'];
     CollapseTransition: (typeof import('./../src/components/Transition/src/CollapseTransition.vue'))['default'];

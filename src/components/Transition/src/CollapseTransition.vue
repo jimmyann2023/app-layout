@@ -12,7 +12,7 @@ export default defineComponent({
   setup() {
     return {
       on: {
-        beforeEnter(el) {
+        beforeEnter(el: Element) {
           addClass(el, 'collapse-transition');
           if (!el.dataset) el.dataset = {};
 
@@ -24,7 +24,7 @@ export default defineComponent({
           el.style.paddingBottom = 0;
         },
 
-        enter(el) {
+        enter(el: Element) {
           el.dataset.oldOverflow = el.style.overflow;
           if (el.scrollHeight !== 0) {
             el.style.height = el.scrollHeight + 'px';
@@ -39,13 +39,13 @@ export default defineComponent({
           el.style.overflow = 'hidden';
         },
 
-        afterEnter(el) {
+        afterEnter(el: Element) {
           removeClass(el, 'collapse-transition');
           el.style.height = '';
           el.style.overflow = el.dataset.oldOverflow;
         },
 
-        beforeLeave(el) {
+        beforeLeave(el: Element) {
           if (!el.dataset) el.dataset = {};
           el.dataset.oldPaddingTop = el.style.paddingTop;
           el.dataset.oldPaddingBottom = el.style.paddingBottom;
@@ -55,7 +55,7 @@ export default defineComponent({
           el.style.overflow = 'hidden';
         },
 
-        leave(el) {
+        leave(el: Element) {
           if (el.scrollHeight !== 0) {
             addClass(el, 'collapse-transition');
             el.style.height = 0;
@@ -64,7 +64,7 @@ export default defineComponent({
           }
         },
 
-        afterLeave(el) {
+        afterLeave(el: Element) {
           removeClass(el, 'collapse-transition');
           el.style.height = '';
           el.style.overflow = el.dataset.oldOverflow;

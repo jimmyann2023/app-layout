@@ -32,6 +32,9 @@ dependencies:
   nprogress:
     specifier: ^0.2.0
     version: 0.2.0
+  path-to-regexp:
+    specifier: ^6.2.1
+    version: 6.2.1
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.2.2)(vue@3.3.8)
@@ -47,6 +50,9 @@ dependencies:
   vue-router:
     specifier: ^4.2.5
     version: 4.2.5(vue@3.3.8)
+  vue-types:
+    specifier: ^5.1.1
+    version: 5.1.1(vue@3.3.8)
 
 devDependencies:
   '@ant-design/colors':
@@ -58,6 +64,9 @@ devDependencies:
   '@commitlint/config-conventional':
     specifier: ^18.1.0
     version: 18.4.0
+  '@purge-icons/generated':
+    specifier: ^0.9.0
+    version: 0.9.0
   '@types/crypto-js':
     specifier: ^4.2.1
     version: 4.2.1
@@ -1005,6 +1014,12 @@ packages:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
 
+  /@iconify/iconify@3.1.1:
+    resolution: {integrity: sha512-1nemfyD/OJzh9ALepH7YfuuP8BdEB24Skhd8DXWh0hzcOxImbb1ZizSZkpCzAwSZSGcJFmscIBaBQu+yLyWaxQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
     dev: true
@@ -1114,6 +1129,12 @@ packages:
 
   /@polka/url@1.0.0-next.23:
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==}
+    dev: true
+
+  /@purge-icons/generated@0.9.0:
+    resolution: {integrity: sha512-s2t+1oVtGDV6KtqfCXtUOhxfeYvOdDF90IVm+nMs/6bUP0HeGZLslguuL/AibpwtfL4FA/oCsIu/RhwapgAdJw==}
+    dependencies:
+      '@iconify/iconify': 3.1.1
     dev: true
 
   /@rollup/pluginutils@5.0.5:
@@ -4388,7 +4409,6 @@ packages:
   /is-plain-object@5.0.0:
     resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /is-regex@1.1.4:
     resolution: {integrity: sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==}
@@ -5433,6 +5453,10 @@ packages:
   /path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
     dev: true
+
+  /path-to-regexp@6.2.1:
+    resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==}
+    dev: false
 
   /path-type@4.0.0:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
@@ -7189,6 +7213,19 @@ packages:
       vue: ^3.0.0
     dependencies:
       is-plain-object: 3.0.1
+      vue: 3.3.8(typescript@5.2.2)
+    dev: false
+
+  /vue-types@5.1.1(vue@3.3.8):
+    resolution: {integrity: sha512-FMY/JCLWePXgGIcMDqYdJsQm1G0CDxEjq6W0+tZMJZlX37q/61eSGSIa/XFRwa9T7kkKXuxxl94/2kgxyWQqKw==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      vue: ^2.0.0 || ^3.0.0
+    peerDependenciesMeta:
+      vue:
+        optional: true
+    dependencies:
+      is-plain-object: 5.0.0
       vue: 3.3.8(typescript@5.2.2)
     dev: false
 

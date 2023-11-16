@@ -15,7 +15,6 @@ import { usePermissionStore } from '@/store/modules/permission';
 import { getAuthCache, setAuthCache } from '@/utils/auth';
 import { isArray } from '@/utils/is';
 
-import type { ErrorMessageMode } from '#/axios';
 import type { UserInfo } from '#/store';
 
 interface UserState {
@@ -86,12 +85,11 @@ export const useUserStore = defineStore({
     async login(
       params: LoginParams & {
         goHome?: boolean;
-        mode?: ErrorMessageMode;
       },
     ): Promise<GetUserInfoModel | null> {
       try {
-        const { goHome = true, mode, ...loginParams } = params;
-        const data = await loginApi(loginParams, mode);
+        const { goHome = true, ...loginParams } = params;
+        const data = await loginApi(loginParams);
         const { token } = data;
 
         // save token
@@ -102,21 +100,31 @@ export const useUserStore = defineStore({
       }
     },
     async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
-      if (!this.getToken) return null;
+      console.log('登录完成');
+      // console.log(!this.getToken);
+      // TODO: 真实登录需要解开
+      // if (!this.getToken) return null;
       // get user info
       const userInfo = await this.getUserInfoAction();
 
       const sessionTimeout = this.sessionTimeout;
+      console.log('sessionTimeout', sessionTimeout);
       if (sessionTimeout) {
         this.setSessionTimeout(false);
       } else {
         const permissionStore = usePermissionStore();
+        console.log('是否态添加路由', !permissionStore.isDynamicAddedRoute);
         if (!permissionStore.isDynamicAddedRoute) {
           const routes = await permissionStore.buildRoutesAction();
+          console.log('路由构建完成', routes);
+
           routes.forEach((route) => {
             router.addRoute(route as unknown as RouteRecordRaw);
           });
+
+          console.log('路由动态添加完毕', routes);
           router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
+
           permissionStore.setDynamicAddedRoute(true);
         }
         goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME));

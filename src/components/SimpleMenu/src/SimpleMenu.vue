@@ -1,5 +1,5 @@
 <template>
-  <CMenu
+  <Menu
     v-bind="getBindValues"
     :activeName="activeName"
     :openNames="getOpenKeys"
@@ -15,7 +15,7 @@
         :collapse="collapse"
       />
     </template>
-  </CMenu>
+  </Menu>
 </template>
 <script lang="ts">
 import { computed, defineComponent, PropType, reactive, ref, toRefs, unref, watch } from 'vue';
@@ -27,14 +27,18 @@ import type { Menu as MenuType } from '@/router/types';
 import { openWindow } from '@/utils';
 import { isFunction, isHttpUrl } from '@/utils/is';
 import { propTypes } from '@/utils/propTypes';
-import CMenu from './components/Menu.vue';
+import Menu from './components/Menu.vue';
 import SimpleSubMenu from './SimpleSubMenu.vue';
 import { MenuState } from './types';
 import { useOpenKeys } from './useOpenKey';
 
 export default defineComponent({
   name: 'SimpleMenu',
-  components: { CMenu, SimpleSubMenu },
+  components: {
+    // eslint-disable-next-line vue/no-reserved-component-names
+    Menu,
+    SimpleSubMenu,
+  },
   inheritAttrs: false,
   props: {
     items: {
@@ -54,7 +58,6 @@ export default defineComponent({
   emits: ['menuClick'],
   setup(props, { attrs, emit }) {
     const currentActiveMenu = ref('');
-
     const isClickGo = ref(false);
 
     const menuState = reactive<MenuState>({
@@ -64,7 +67,6 @@ export default defineComponent({
     });
 
     const { currentRoute } = useRouter();
-
     const { prefixCls } = useDesign('simple-menu');
     const { items, accordion, mixSider, collapse } = toRefs(props);
 
@@ -153,3 +155,6 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="less">
+@import url('./index.less');
+</style>

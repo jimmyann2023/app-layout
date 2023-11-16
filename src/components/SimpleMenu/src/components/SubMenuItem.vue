@@ -15,6 +15,7 @@
         </ul>
       </CollapseTransition>
     </template>
+
     <Popover
       placement="right"
       :overlayClassName="`${prefixCls}-menu-popover`"
@@ -110,6 +111,7 @@ export default defineComponent({
     });
 
     const { getParentSubMenu, getItemStyle, getParentMenu, getParentList } = useMenuItem(instance);
+    console.log('getParentMenu', getParentMenu);
 
     const { prefixCls } = useDesign('menu');
 
