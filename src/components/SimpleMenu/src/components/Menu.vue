@@ -24,7 +24,6 @@ import type { SubMenuProvider } from './types';
 import { createSimpleRootMenuContext, type MenuEmitterEvents } from './useSimpleMenuContext';
 
 export default defineComponent({
-  // eslint-disable-next-line vue/no-reserved-component-names
   name: 'Menu',
   props: {
     theme: propTypes.oneOf(['light', 'dark']).def('light'),
