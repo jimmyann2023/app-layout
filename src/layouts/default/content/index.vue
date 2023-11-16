@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top: 80px">
     <PageLayout :class="prefixCls" />
   </div>
 </template>
@@ -10,7 +10,9 @@ import PageLayout from '@/layouts/page/index.vue';
 
 export default defineComponent({
   name: 'LayoutContent',
-  components: { PageLayout },
+  components: {
+    PageLayout,
+  },
   setup() {
     const prefixCls = useDesign('layout-content');
     return {

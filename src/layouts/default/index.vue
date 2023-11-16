@@ -1,6 +1,6 @@
 <template>
   <Layout :class="prefixCls">
-    <!-- <LayoutFeatures /> -->
+    <LayoutFeatures />
     <LayoutHeader fixed />
     <Layout :class="[layoutClass, `${prefixCls}-out`]">
       <LayoutSideBar />
@@ -16,13 +16,20 @@
 import { computed, defineComponent } from 'vue';
 import { Layout } from 'ant-design-vue';
 import { useDesign } from '@/hooks/web/useDesign';
+import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
 import LayoutContent from './content/index.vue';
 import LayoutHeader from './header/index.vue';
 import LayoutSideBar from './sider/index.vue';
 
 export default defineComponent({
   name: 'DefaultLayout',
-  components: { Layout, LayoutSideBar, LayoutHeader, LayoutContent },
+  components: {
+    LayoutFeatures: createAsyncComponent(() => import('@/layouts/default/feature/index.vue')),
+    Layout,
+    LayoutSideBar,
+    LayoutHeader,
+    LayoutContent,
+  },
   setup() {
     const { prefixCls } = useDesign('default-layout');
     const layoutClass = computed(() => {

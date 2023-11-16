@@ -1,24 +1,88 @@
 <template>
-  <Layout.Sider ref="sideRef" breakpoint="lg" collapsible :class="getSiderClass" />
+  <div
+    v-if="getMenuFixed && !getIsMobile"
+    v-show="showClassSideBarRef"
+    :style="getHiddenDomStyle"
+  ></div>
+  <Layout.Sider
+    v-show="showClassSideBarRef"
+    ref="sideRef"
+    breakpoint="lg"
+    collapsible
+    :class="getSiderClass"
+    :width="getMenuWidth"
+    :collapsed="getCollapsed"
+    :collapsedWidth="getCollapsedWidth"
+    :theme="getMenuTheme"
+    @breakpoint="onBreakpointChange"
+  >
+    <LayoutMenu :theme="getMenuTheme" :menuMode="getMode" :splitType="getSplitType" />
+  </Layout.Sider>
 </template>
 <script lang="ts" setup>
-import { unref } from 'vue';
+import { computed, CSSProperties, ref, unref } from 'vue';
 import { Layout } from 'ant-design-vue';
+import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+import { useAppInject } from '@/hooks/web/useAppInject';
 import { useDesign } from '@/hooks/web/useDesign';
+import LayoutMenu from '../menu/index.vue';
+import { useSiderEvent } from './useLayoutSider';
 
 defineOptions({ name: 'LayoutSideBar' });
 
+const sideRef = ref(null);
+
+const {
+  getCollapsed,
+  getMenuWidth,
+  getSplit,
+  getMenuTheme,
+  getRealWidth,
+  getMenuHidden,
+  getMenuFixed,
+  getIsMixMode,
+} = useMenuSetting();
+
 const { prefixCls } = useDesign('layout-sideBar');
 
-const getSiderClass = () => {
+const { getIsMobile } = useAppInject();
+
+const { getCollapsedWidth, onBreakpointChange } = useSiderEvent();
+
+const getMode = computed(() => {
+  return unref(getSplit) ? MenuModeEnum.INLINE : null;
+});
+
+const getSplitType = computed(() => {
+  return unref(getSplit) ? MenuSplitTyeEnum.LEFT : MenuSplitTyeEnum.NONE;
+});
+
+const showClassSideBarRef = computed(() => {
+  return unref(getSplit) ? !unref(getMenuHidden) : true;
+});
+
+const getSiderClass = computed(() => {
   return [
     prefixCls,
     {
-      [`${prefixCls}--fixed`]: unref('getMenuFixed'),
-      [`${prefixCls}--mix`]: unref('getIsMixMode') && !unref('getIsMobile'),
+      [`${prefixCls}--fixed`]: unref(getMenuFixed),
+      [`${prefixCls}--mix`]: unref(getIsMixMode) && !unref(getIsMobile),
     },
   ];
-};
+});
+
+const getHiddenDomStyle = computed((): CSSProperties => {
+  const width = `${unref(getRealWidth)}px`;
+  return {
+    width,
+    overflow: 'hidden',
+    flex: `0 0 ${width}`,
+    maxWidth: width,
+    minWidth: width,
+    transition: 'all 0.2s',
+  };
+});
 </script>
 
 <style lang="less">

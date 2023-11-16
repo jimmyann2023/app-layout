@@ -24,7 +24,7 @@ import type { SubMenuProvider } from './types';
 import { createSimpleRootMenuContext, type MenuEmitterEvents } from './useSimpleMenuContext';
 
 export default defineComponent({
-  name: 'AMenu',
+  name: 'CMenu',
   props: {
     theme: propTypes.oneOf(['light', 'dark']).def('light'),
     activeName: propTypes.oneOfType([propTypes.string, propTypes.number]),
