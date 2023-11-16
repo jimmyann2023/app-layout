@@ -1,24 +1,28 @@
 <template>
   <Layout :class="prefixCls">
+    <!-- <LayoutFeatures /> -->
     <LayoutHeader fixed />
     <Layout :class="[layoutClass, `${prefixCls}-out`]">
       <LayoutSideBar />
       <Layout :class="`${prefixCls}-main`">
-        <div>layout -index</div>
-        <RouterView />
+        <!-- <LayoutMultipleHeader /> -->
+        <LayoutContent />
+        <!-- <LayoutFooter /> -->
       </Layout>
     </Layout>
   </Layout>
 </template>
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
+import { Layout } from 'ant-design-vue';
 import { useDesign } from '@/hooks/web/useDesign';
+import LayoutContent from './content/index.vue';
 import LayoutHeader from './header/index.vue';
 import LayoutSideBar from './sider/index.vue';
 
 export default defineComponent({
   name: 'DefaultLayout',
-  components: { LayoutSideBar, LayoutHeader },
+  components: { Layout, LayoutSideBar, LayoutHeader, LayoutContent },
   setup() {
     const { prefixCls } = useDesign('default-layout');
     const layoutClass = computed(() => {
