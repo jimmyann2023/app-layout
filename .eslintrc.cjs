@@ -21,7 +21,6 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   rules: {
-    'vue/script-setup-uses-vars': 'error',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
@@ -50,6 +49,8 @@ module.exports = {
     ],
     'space-before-function-paren': 'off',
 
+    'vue/script-setup-uses-vars': 'error',
+    'vue/no-reserved-component-names': 'off',
     'vue/attributes-order': 'off',
     'vue/v-on-event-hyphenation': 'off',
     'vue/multi-word-component-names': 'off',

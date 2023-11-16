@@ -35,7 +35,6 @@ import { useOpenKeys } from './useOpenKey';
 export default defineComponent({
   name: 'SimpleMenu',
   components: {
-    // eslint-disable-next-line vue/no-reserved-component-names
     Menu,
     SimpleSubMenu,
   },
