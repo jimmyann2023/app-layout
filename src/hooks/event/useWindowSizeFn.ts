@@ -13,7 +13,7 @@ type AnyNormalFunction = (...arg: any[]) => any;
 /**
  * 任意类型的函数
  */
-type AnyFunction = AnyNormalFunction | AnyPromiseFunction;
+export type AnyFunction = AnyNormalFunction | AnyPromiseFunction;
 
 interface UseWindowSizeOptions {
   wait?: number;

@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
-import Antd from 'ant-design-vue';
+import { registerGlobComp } from '@/components/registerGlobComp';
+import { setupGlobDirectives } from '@/directives';
 import { setupI18n } from '@/locales/setupI18n';
 import { setupRouter } from '@/router';
 import { setupStore } from '@/store';
@@ -8,6 +9,8 @@ import App from './App.vue';
 import '@/styles/index.less';
 import 'uno.css';
 import 'ant-design-vue/dist/reset.css';
+// Register icon sprite
+import 'virtual:svg-icons-register';
 
 async function bootstrap() {
   const app = createApp(App);
@@ -18,6 +21,9 @@ async function bootstrap() {
   // 初始化内部系统配置
   initAppConfigStore();
 
+  // 注册全局组件
+  registerGlobComp(app);
+
   // 多语言配置
   // 异步案例：语言文件可能从服务器端获取
   await setupI18n(app);
@@ -25,7 +31,12 @@ async function bootstrap() {
   // 配置路由
   setupRouter(app);
 
-  app.use(Antd);
+  // 路由守卫
+  // setupRouterGuard(router);
+
+  // 注册全局指令
+  setupGlobDirectives(app);
+
   app.mount('#app');
 }
 

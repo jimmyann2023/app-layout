@@ -98,4 +98,3 @@ export default defineComponent({
   }
 }
 </style>
-@/hooks/setting/useMultipleTabSetting

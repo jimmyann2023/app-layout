@@ -6,6 +6,7 @@ import UnoCSS from 'unocss/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig, loadEnv } from 'vite';
+import PurgeIcons from 'vite-plugin-purge-icons';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { generateModifyVars } from './src/utils/modifyVar';
 import pkg from './package.json';
@@ -57,7 +58,7 @@ export default defineConfig(({ mode }) => {
       vue(),
       vueJsx(),
       UnoCSS(),
-
+      PurgeIcons(),
       createSvgIconsPlugin({
         // Specify the icon folder to be cached
         iconDirs: [resolve(CWD, 'src/assets/icons')],

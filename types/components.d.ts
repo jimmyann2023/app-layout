@@ -7,25 +7,41 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AAvatar: (typeof import('ant-design-vue/es'))['Avatar'];
+    ABreadcrumb: (typeof import('ant-design-vue/es'))['Breadcrumb'];
+    AButton: (typeof import('ant-design-vue/es'))['Button'];
+    AList: (typeof import('ant-design-vue/es'))['List'];
+    AListItem: (typeof import('ant-design-vue/es'))['ListItem'];
+    AListItemMeta: (typeof import('ant-design-vue/es'))['ListItemMeta'];
     AppDarkModeToggle: (typeof import('./../src/components/Application/src/AppDarkModeToggle.vue'))['default'];
     AppLocalePicker: (typeof import('./../src/components/Application/src/AppLocalePicker.vue'))['default'];
     AppLogo: (typeof import('./../src/components/Application/src/AppLogo.vue'))['default'];
     AppProvider: (typeof import('./../src/components/Application/src/AppProvider.vue'))['default'];
+    ATag: (typeof import('ant-design-vue/es'))['Tag'];
+    ATypographyParagraph: (typeof import('ant-design-vue/es'))['TypographyParagraph'];
     BasicArrow: (typeof import('./../src/components/Basic/src/BasicArrow.vue'))['default'];
     BasicDrawer: (typeof import('./../src/components/Drawer/src/BasicDrawer.vue'))['default'];
     BasicHelp: (typeof import('./../src/components/Basic/src/BasicHelp.vue'))['default'];
     BasicMenu: (typeof import('./../src/components/Menu/src/BasicMenu.vue'))['default'];
+    BasicModal: (typeof import('./../src/components/Modal/src/BasicModal.vue'))['default'];
     BasicTitle: (typeof import('./../src/components/Basic/src/BasicTitle.vue'))['default'];
     CollapseContainer: (typeof import('./../src/components/Container/src/collapse/CollapseContainer.vue'))['default'];
     CollapseHeader: (typeof import('./../src/components/Container/src/collapse/CollapseHeader.vue'))['default'];
     CollapseTransition: (typeof import('./../src/components/Transition/src/CollapseTransition.vue'))['default'];
     Drawer: (typeof import('./../src/components/Drawer/index.vue'))['default'];
+    DrawerFooter: (typeof import('./../src/components/Drawer/src/components/DrawerFooter.vue'))['default'];
+    DrawerHeader: (typeof import('./../src/components/Drawer/src/components/DrawerHeader.vue'))['default'];
     Dropdown: (typeof import('./../src/components/Dropdown/src/Dropdown.vue'))['default'];
     Icon: (typeof import('./../src/components/Icon/Icon.vue'))['default'];
     IconPicker: (typeof import('./../src/components/Icon/src/IconPicker.vue'))['default'];
+    Loading: (typeof import('./../src/components/Loading/src/Loading.vue'))['default'];
     Menu: (typeof import('./../src/components/SimpleMenu/src/components/Menu.vue'))['default'];
     MenuCollapseTransition: (typeof import('./../src/components/SimpleMenu/src/components/MenuCollapseTransition.vue'))['default'];
     MenuItem: (typeof import('./../src/components/SimpleMenu/src/components/MenuItem.vue'))['default'];
+    ModalClose: (typeof import('./../src/components/Modal/src/components/ModalClose.vue'))['default'];
+    ModalFooter: (typeof import('./../src/components/Modal/src/components/ModalFooter.vue'))['default'];
+    ModalHeader: (typeof import('./../src/components/Modal/src/components/ModalHeader.vue'))['default'];
+    ModalWrapper: (typeof import('./../src/components/Modal/src/components/ModalWrapper.vue'))['default'];
     RouterLink: (typeof import('vue-router'))['RouterLink'];
     RouterView: (typeof import('vue-router'))['RouterView'];
     Scrollbar: (typeof import('./../src/components/Scrollbar/src/Scrollbar.vue'))['default'];

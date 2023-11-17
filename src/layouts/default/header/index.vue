@@ -16,6 +16,7 @@
         :theme="getHeaderTheme"
         :sider="false"
       />
+      <LayoutBreadcrumb v-if="getShowContent && getShowBread" :theme="getHeaderTheme" />
     </div>
     <!-- left end -->
 
@@ -29,6 +30,28 @@
       />
     </div>
     <!-- menu-end -->
+
+    <!-- action  -->
+    <div :class="`${prefixCls}-action`">
+      <!-- <AppSearch v-if="getShowSearch" :class="`${prefixCls}-action__item `" /> -->
+
+      <ErrorAction v-if="getUseErrorHandle" :class="`${prefixCls}-action__item error-action`" />
+
+      <Notify v-if="getShowNotice" :class="`${prefixCls}-action__item notify-item`" />
+
+      <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item fullscreen-item`" />
+
+      <AppLocalePicker
+        v-if="getShowLocalePicker"
+        :reload="true"
+        :showText="false"
+        :class="`${prefixCls}-action__item`"
+      />
+
+      <UserDropDown :theme="getHeaderTheme" />
+
+      <SettingDrawer v-if="getShowSetting" :class="`${prefixCls}-action__item`" />
+    </div>
   </Layout.Header>
 </template>
 
@@ -36,15 +59,23 @@
 import { computed, unref } from 'vue';
 import { Layout } from 'ant-design-vue';
 import { AppLogo } from '@/components/Application';
+import { SettingButtonPositionEnum } from '@/enums/appEnum';
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-// import { useRootSetting } from '@/hooks/setting/useRootSetting';
+import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { useAppInject } from '@/hooks/web/useAppInject';
 import { useDesign } from '@/hooks/web/useDesign';
+import { useLocale } from '@/locales/useLocale';
+import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
 import { propTypes } from '@/utils/propTypes';
 import LayoutMenu from '../menu/index.vue';
 import LayoutTrigger from '../trigger/index.vue';
+import { ErrorAction, FullScreen, LayoutBreadcrumb, Notify, UserDropDown } from './components';
+
+const SettingDrawer = createAsyncComponent(() => import('@/layouts/default/setting/index.vue'), {
+  loading: true,
+});
 
 defineOptions({ name: 'LayoutHeader' });
 const props = defineProps({
@@ -61,9 +92,27 @@ const {
   getIsMixSidebar,
 } = useMenuSetting();
 
-// const { getUseErrorHandle, getShowSettingButton, getSettingButtonPosition } = useRootSetting();
+const { getUseErrorHandle, getShowSettingButton, getSettingButtonPosition } = useRootSetting();
 
-const { getHeaderTheme, getShowContent, getShowHeaderLogo } = useHeaderSetting();
+const {
+  getHeaderTheme,
+  getShowFullScreen,
+  getShowNotice,
+  getShowContent,
+  getShowBread,
+  getShowHeaderLogo,
+  getShowHeader,
+} = useHeaderSetting();
+
+console.log(
+  'getHeaderTheme',
+  getHeaderTheme,
+  'getShowContent',
+  getShowContent,
+  'getShowBread',
+  getShowBread,
+);
+const { getShowLocalePicker } = useLocale();
 
 const { getIsMobile } = useAppInject();
 
@@ -77,6 +126,18 @@ const getHeaderClass = computed(() => {
       [`${prefixCls}--${theme}`]: theme,
     },
   ];
+});
+
+const getShowSetting = computed(() => {
+  if (!unref(getShowSettingButton)) {
+    return false;
+  }
+  const settingButtonPosition = unref(getSettingButtonPosition);
+
+  if (settingButtonPosition === SettingButtonPositionEnum.AUTO) {
+    return unref(getShowHeader);
+  }
+  return settingButtonPosition === SettingButtonPositionEnum.HEADER;
 });
 
 const getLogoWidth = computed(() => {

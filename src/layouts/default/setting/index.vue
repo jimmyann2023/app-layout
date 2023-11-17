@@ -1,21 +1,25 @@
 <template>
-  <div>
+  <div @click="openDrawer(true)">
     <Icon icon="ion:settings-outline" />
-    <!-- <SettingDrawer @register="register" /> -->
+    <SettingDrawer @register="register" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-// import SettingDrawer from './SettingDrawer';
+import { useDrawer } from '@/components/Drawer';
 import Icon from '@/components/Icon/Icon.vue';
-
-// import { useDrawer } from '/@/components/Drawer';
+import SettingDrawer from './SettingDrawer';
 
 export default defineComponent({
   name: 'SettingButton',
-  components: { Icon },
+  components: { SettingDrawer, Icon },
   setup() {
-    return {};
+    const [register, { openDrawer }] = useDrawer();
+
+    return {
+      register,
+      openDrawer,
+    };
   },
 });
 </script>

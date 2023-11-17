@@ -88,7 +88,7 @@ function getIcons() {
   const prefix: string = data?.prefix ?? '';
   let result: string[] = [];
   if (prefix) {
-    result = (data?.icons ?? []).map((item) => `${prefix}:${item}`);
+    result = (data?.icons ?? []).map((item: any) => `${prefix}:${item}`);
   } else if (Array.isArray(iconsData)) {
     result = iconsData as string[];
   }
@@ -162,7 +162,7 @@ function handleSearchChange(e: Event) {
     currentList.value = icons;
     return;
   }
-  currentList.value = icons.filter((item) => item.includes(value));
+  currentList.value = icons.filter((item: string | string[]) => item.includes(value));
 }
 </script>
 <style lang="less">
