@@ -72,7 +72,7 @@ const setting: ProjectConfig = {
     // 主题
     theme: ThemeEnum.LIGHT,
     // 开启锁屏功能
-    useLockPage: true,
+    useLockPage: false,
     // 显示全屏按钮
     showFullScreen: true,
     // 显示文档按钮
@@ -80,9 +80,9 @@ const setting: ProjectConfig = {
     // 显示消息中心按钮
     showNotice: true,
     // 显示菜单搜索按钮
-    showSearch: true,
+    showSearch: false,
     // 显示API
-    showApi: true,
+    showApi: false,
   },
 
   // 菜单配置

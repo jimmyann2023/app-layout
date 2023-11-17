@@ -14,23 +14,32 @@
     :collapsed="getCollapsed"
     :collapsedWidth="getCollapsedWidth"
     :theme="getMenuTheme"
+    :trigger="getTrigger"
+    v-bind="getTriggerAttr"
     @breakpoint="onBreakpointChange"
   >
+    <template v-if="getShowTrigger" #trigger>
+      <LayoutTrigger />
+    </template>
     <LayoutMenu :theme="getMenuTheme" :menuMode="getMode" :splitType="getSplitType" />
+    <DragBar ref="dragBarRef" />
   </Layout.Sider>
 </template>
 <script lang="ts" setup>
-import { computed, CSSProperties, ref, unref } from 'vue';
+import { computed, CSSProperties, h, ref, unref } from 'vue';
 import { Layout } from 'ant-design-vue';
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useAppInject } from '@/hooks/web/useAppInject';
 import { useDesign } from '@/hooks/web/useDesign';
+import LayoutTrigger from '@/layouts/default/trigger/index.vue';
 import LayoutMenu from '../menu/index.vue';
-import { useSiderEvent } from './useLayoutSider';
+import DragBar from './DragBar.vue';
+import { useDragLine, useSiderEvent, useTrigger } from './useLayoutSider';
 
 defineOptions({ name: 'LayoutSideBar' });
 
+const dragBarRef = ref(null);
 const sideRef = ref(null);
 
 const {
@@ -47,6 +56,10 @@ const {
 const { prefixCls } = useDesign('layout-sideBar');
 
 const { getIsMobile } = useAppInject();
+
+const { getTriggerAttr, getShowTrigger } = useTrigger(getIsMobile);
+
+useDragLine(sideRef, dragBarRef);
 
 const { getCollapsedWidth, onBreakpointChange } = useSiderEvent();
 
@@ -83,8 +96,11 @@ const getHiddenDomStyle = computed((): CSSProperties => {
     transition: 'all 0.2s',
   };
 });
-</script>
 
+// 在此处使用计算量可能会导致sider异常
+// andv 更新后，如果trigger插槽可用，则此处代码可废弃
+const getTrigger = h(LayoutTrigger);
+</script>
 <style lang="less">
 @prefix-cls: ~'@{namespace}-layout-sideBar';
 

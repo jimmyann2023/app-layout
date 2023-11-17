@@ -76,6 +76,7 @@ export default defineComponent({
       mixSider as any,
       collapse as any,
     );
+    console.log('setOpenKeys', setOpenKeys, 'getOpenKeys', getOpenKeys);
 
     const getBindValues = computed(() => ({ ...attrs, ...props }));
 

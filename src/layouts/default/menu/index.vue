@@ -1,13 +1,15 @@
 <script lang="tsx">
-import type { PropType } from 'vue';
+import type { CSSProperties, PropType } from 'vue';
 import { computed, defineComponent, toRef, unref } from 'vue';
+import { AppLogo } from '@/components/Application';
+import { ScrollContainer } from '@/components/Container';
 import { BasicMenu } from '@/components/Menu';
 import { SimpleMenu } from '@/components/SimpleMenu';
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useRootSetting } from '@/hooks/setting/useRootSetting.ts';
 import { useAppInject } from '@/hooks/web/useAppInject';
-// import { useDesign } from '@/hooks/web/useDesign';
+import { useDesign } from '@/hooks/web/useDesign';
 import { useGo } from '@/hooks/web/usePage.ts';
 import { openWindow } from '@/utils';
 import { isHttpUrl } from '@/utils/is';
@@ -32,7 +34,6 @@ export default defineComponent({
     },
   },
   setup(props) {
-    console.log('props', props);
     const go = useGo();
 
     const {
@@ -42,13 +43,13 @@ export default defineComponent({
       getCollapsed,
       getCollapsedShowTitle,
       getAccordion,
-      // getIsHorizontal,
+      getIsHorizontal,
       getIsSidebarType,
       getSplit,
     } = useMenuSetting();
     const { getShowLogo } = useRootSetting();
 
-    // const { prefixCls } = useDesign('layout-menu');
+    const { prefixCls } = useDesign('layout-menu');
 
     const { menusRef } = useSplitMenu(toRef(props, 'splitType'));
 
@@ -62,30 +63,30 @@ export default defineComponent({
 
     const getIsShowLogo = computed(() => unref(getShowLogo) && unref(getIsSidebarType));
 
-    // const getUseScroll = computed(() => {
-    //   return (
-    //     !unref(getIsHorizontal) &&
-    //     (unref(getIsSidebarType) ||
-    //       props.splitType === MenuSplitTyeEnum.LEFT ||
-    //       props.splitType === MenuSplitTyeEnum.NONE)
-    //   );
-    // });
+    const getUseScroll = computed(() => {
+      return (
+        !unref(getIsHorizontal) &&
+        (unref(getIsSidebarType) ||
+          props.splitType === MenuSplitTyeEnum.LEFT ||
+          props.splitType === MenuSplitTyeEnum.NONE)
+      );
+    });
 
-    // const getWrapperStyle = computed((): CSSProperties => {
-    //   return {
-    //     height: `calc(100% - ${unref(getIsShowLogo) ? '48px' : '0px'})`,
-    //   };
-    // });
+    const getWrapperStyle = computed((): CSSProperties => {
+      return {
+        height: `calc(100% - ${unref(getIsShowLogo) ? '48px' : '0px'})`,
+      };
+    });
 
-    // const getLogoClass = computed(() => {
-    //   return [
-    //     `${prefixCls}-logo`,
-    //     unref(getComputedMenuTheme),
-    //     {
-    //       [`${prefixCls}--mobile`]: unref(getIsMobile),
-    //     },
-    //   ];
-    // });
+    const getLogoClass = computed(() => {
+      return [
+        `${prefixCls}-logo`,
+        unref(getComputedMenuTheme),
+        {
+          [`${prefixCls}--mobile`]: unref(getIsMobile),
+        },
+      ];
+    });
 
     const getCommonProps = computed(() => {
       const menus = unref(menusRef);
@@ -121,11 +122,21 @@ export default defineComponent({
       return false;
     }
 
-    const renderMenu = () => {
+    function renderHeader() {
+      if (!unref(getIsShowLogo) && !unref(getIsMobile)) return null;
+
+      return (
+        <AppLogo
+          showTitle={!unref(getCollapsed)}
+          class={unref(getLogoClass)}
+          theme={unref(getComputedMenuTheme)}
+        />
+      );
+    }
+
+    function renderMenu() {
       const { menus, ...menuProps } = unref(getCommonProps);
-      console.log('menus', menus);
-      console.log('menuProps', menuProps);
-      console.log('!props.isHorizontal', !props.isHorizontal);
+      // console.log(menus);
       if (!menus || !menus.length) return null;
       return !props.isHorizontal ? (
         <SimpleMenu {...menuProps} isSplitMenu={unref(getSplit)} items={menus} />
@@ -139,10 +150,19 @@ export default defineComponent({
           items={menus}
         />
       );
-    };
+    }
 
     return () => {
-      return <>{renderMenu()}</>;
+      return (
+        <>
+          {renderHeader()}
+          {unref(getUseScroll) ? (
+            <ScrollContainer style={unref(getWrapperStyle)}>{() => renderMenu()}</ScrollContainer>
+          ) : (
+            renderMenu()
+          )}
+        </>
+      );
     };
   },
 });
