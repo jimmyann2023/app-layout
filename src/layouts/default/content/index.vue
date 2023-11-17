@@ -1,12 +1,14 @@
 <template>
-  <div style="margin-top: 80px">
-    <PageLayout :class="prefixCls" />
+  <div :class="[prefixCls, getLayoutContentMode]">
+    <PageLayout />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { useDesign } from '@/hooks/web/useDesign';
 import PageLayout from '@/layouts/page/index.vue';
+import { useContentViewHeight } from './useContentViewHeight';
 
 export default defineComponent({
   name: 'LayoutContent',
@@ -15,8 +17,12 @@ export default defineComponent({
   },
   setup() {
     const prefixCls = useDesign('layout-content');
+    const { getLayoutContentMode } = useRootSetting();
+
+    useContentViewHeight();
     return {
       prefixCls,
+      getLayoutContentMode,
     };
   },
 });
