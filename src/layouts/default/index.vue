@@ -40,8 +40,9 @@ export default defineComponent({
     const { prefixCls } = useDesign('default-layout');
     const { getIsMobile } = useAppInject();
     const { getShowFullHeaderRef } = useHeaderSetting();
+    console.log('getShowFullHeaderRef', getShowFullHeaderRef);
     const { getShowSidebar, getIsMixSidebar, getShowMenu } = useMenuSetting();
-    console.log('getShowSidebar', getShowSidebar, 'getIsMobile', getIsMobile);
+
     const { getAutoCollapse } = useMultipleTabSetting();
 
     const layoutClass = computed(() => {

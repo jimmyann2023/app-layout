@@ -2,7 +2,8 @@ import { createApp } from 'vue';
 import { registerGlobComp } from '@/components/registerGlobComp';
 import { setupGlobDirectives } from '@/directives';
 import { setupI18n } from '@/locales/setupI18n';
-import { setupRouter } from '@/router';
+import { router, setupRouter } from '@/router';
+import { setupRouterGuard } from '@/router/guard';
 import { setupStore } from '@/store';
 import { initAppConfigStore } from './settings/initAppConfig';
 import App from './App.vue';
@@ -32,7 +33,7 @@ async function bootstrap() {
   setupRouter(app);
 
   // 路由守卫
-  // setupRouterGuard(router);
+  setupRouterGuard(router);
 
   // 注册全局指令
   setupGlobDirectives(app);

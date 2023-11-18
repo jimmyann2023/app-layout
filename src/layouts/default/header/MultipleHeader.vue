@@ -37,7 +37,7 @@ export default defineComponent({
     const { getIsMobile } = useAppInject();
     const { getFixed, getShowInsetHeaderRef, getShowFullHeaderRef, getHeaderTheme, getShowHeader } =
       useHeaderSetting();
-
+    console.log('getShowInsetHeaderRef', getShowInsetHeaderRef);
     const { getFullContent } = useFullContent();
 
     const { getShowMultipleTab, getAutoCollapse } = useMultipleTabSetting();

@@ -58,7 +58,7 @@
 <script lang="ts" setup>
 import { computed, unref } from 'vue';
 import { Layout } from 'ant-design-vue';
-import { AppLogo } from '@/components/Application';
+import { AppLocalePicker, AppLogo } from '@/components/Application';
 import { SettingButtonPositionEnum } from '@/enums/appEnum';
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
@@ -76,22 +76,20 @@ import { ErrorAction, FullScreen, LayoutBreadcrumb, Notify, UserDropDown } from 
 const SettingDrawer = createAsyncComponent(() => import('@/layouts/default/setting/index.vue'), {
   loading: true,
 });
-
 defineOptions({ name: 'LayoutHeader' });
+
 const props = defineProps({
   fixed: propTypes.bool,
 });
-
 const { prefixCls } = useDesign('layout-header');
 const {
   getShowTopMenu,
-  getIsMixMode,
-  getMenuWidth,
   getShowHeaderTrigger,
   getSplit,
+  getIsMixMode,
+  getMenuWidth,
   getIsMixSidebar,
 } = useMenuSetting();
-
 const { getUseErrorHandle, getShowSettingButton, getSettingButtonPosition } = useRootSetting();
 
 const {
@@ -103,26 +101,18 @@ const {
   getShowHeaderLogo,
   getShowHeader,
 } = useHeaderSetting();
-
-console.log(
-  'getHeaderTheme',
-  getHeaderTheme,
-  'getShowContent',
-  getShowContent,
-  'getShowBread',
-  getShowBread,
-);
+console.log('getHeaderTheme', getHeaderTheme);
 const { getShowLocalePicker } = useLocale();
 
 const { getIsMobile } = useAppInject();
 
 const getHeaderClass = computed(() => {
-  const theme = unref('getHeaderTheme');
+  const theme = unref(getHeaderTheme);
   return [
     prefixCls,
     {
       [`${prefixCls}--fixed`]: props.fixed,
-      [`${prefixCls}--mobile`]: unref('getIsMobile'),
+      [`${prefixCls}--mobile`]: unref(getIsMobile),
       [`${prefixCls}--${theme}`]: theme,
     },
   ];
