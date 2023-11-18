@@ -99,5 +99,5 @@ module.exports = {
       },
     ],
   },
-  globals: { defineOptions: 'readonly' },
+  globals: { defineOptions: 'readonly', LabelValueOptions: true },
 };

@@ -38,7 +38,6 @@ export default defineComponent({
       type: [String, Number] as PropType<string | number>,
     },
     options: {
-      // eslint-disable-next-line no-undef
       type: Array as PropType<LabelValueOptions>,
       default: () => [],
     },
