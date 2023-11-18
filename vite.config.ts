@@ -6,11 +6,12 @@ import UnoCSS from 'unocss/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig, loadEnv } from 'vite';
+import { createHtmlPlugin } from 'vite-plugin-html';
 import PurgeIcons from 'vite-plugin-purge-icons';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { generateModifyVars } from './src/utils/modifyVar';
 import pkg from './package.json';
-
+import { presetTypography, presetUno } from 'unocss';
 const CWD = process.cwd();
 
 // 环境变量
@@ -57,8 +58,13 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       vueJsx(),
-      UnoCSS(),
+      UnoCSS({
+        presets: [presetUno(), presetTypography()],
+      }),
       PurgeIcons(),
+      createHtmlPlugin({
+        minify: true,
+      }),
       createSvgIconsPlugin({
         // Specify the icon folder to be cached
         iconDirs: [resolve(CWD, 'src/assets/icons')],
