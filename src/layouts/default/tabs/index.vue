@@ -42,7 +42,7 @@ import { REDIRECT_NAME } from '@/router/constant';
 import { listenerRouteChange } from '@/router/mitt/routeChange';
 import { multipleTabHeight } from '@/settings/designSetting';
 import { useMultipleTabStore } from '@/store/modules/multipleTab';
-// import { useUserStore } from '@/store/modules/user';
+import { useUserStore } from '@/store/modules/user';
 import FoldButton from './components/FoldButton.vue';
 import SettingButton from './components/SettingButton.vue';
 import TabContent from './components/TabContent.vue';
@@ -65,7 +65,7 @@ export default defineComponent({
 
     useTabsDrag(affixTextList);
     const tabStore = useMultipleTabStore();
-    // const userStore = useUserStore();
+    const userStore = useUserStore();
     const router = useRouter();
 
     const { prefixCls } = useDesign('multiple-tabs');
@@ -96,13 +96,10 @@ export default defineComponent({
 
     listenerRouteChange((route) => {
       const { name } = route;
-      // if (name === REDIRECT_NAME || !route || !userStore.getToken) {
-      //   return;
-      // }
-      // TODO: 正式登录要解开 token 判断
-      if (name === REDIRECT_NAME || !route) {
+      if (name === REDIRECT_NAME || !route || !userStore.getToken) {
         return;
       }
+      // TODO: 正式登录要解开 token 判断
 
       const { path, fullPath, meta = {} } = route;
       const { currentActiveMenu, hideTab } = meta as RouteMeta;

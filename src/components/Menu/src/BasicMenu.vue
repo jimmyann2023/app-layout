@@ -43,6 +43,7 @@ export default defineComponent({
   props: basicProps,
   emits: ['menuClick'],
   setup(props, { emit }) {
+    console.log('props', props);
     const isClickGo = ref(false);
     const currentActiveMenu = ref('');
 

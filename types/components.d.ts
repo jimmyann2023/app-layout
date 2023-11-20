@@ -13,10 +13,12 @@ declare module 'vue' {
     AList: (typeof import('ant-design-vue/es'))['List'];
     AListItem: (typeof import('ant-design-vue/es'))['ListItem'];
     AListItemMeta: (typeof import('ant-design-vue/es'))['ListItemMeta'];
+    AMenu: (typeof import('ant-design-vue/es'))['Menu'];
     AppDarkModeToggle: (typeof import('./../src/components/Application/src/AppDarkModeToggle.vue'))['default'];
     AppLocalePicker: (typeof import('./../src/components/Application/src/AppLocalePicker.vue'))['default'];
     AppLogo: (typeof import('./../src/components/Application/src/AppLogo.vue'))['default'];
     AppProvider: (typeof import('./../src/components/Application/src/AppProvider.vue'))['default'];
+    ASubMenu: (typeof import('ant-design-vue/es'))['SubMenu'];
     ATag: (typeof import('ant-design-vue/es'))['Tag'];
     ATypographyParagraph: (typeof import('ant-design-vue/es'))['TypographyParagraph'];
     BasicArrow: (typeof import('./../src/components/Basic/src/BasicArrow.vue'))['default'];

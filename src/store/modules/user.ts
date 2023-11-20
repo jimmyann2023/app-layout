@@ -2,7 +2,7 @@ import { h } from 'vue';
 import { RouteRecordRaw } from 'vue-router';
 import { defineStore } from 'pinia';
 import { GetUserInfoModel, LoginParams } from '@/api/sys/model/userModel';
-import { doLogout, getUserInfo, loginApi } from '@/api/sys/user';
+import { doLogout, loginApi } from '@/api/sys/user';
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum';
 import { PageEnum } from '@/enums/pageEnum';
 import { RoleEnum } from '@/enums/roleEnum';
@@ -59,6 +59,7 @@ export const useUserStore = defineStore({
   actions: {
     setToken(info: string | undefined) {
       this.token = info ? info : ''; // for null or undefined value
+      console.log('this.token', this.token);
       setAuthCache(TOKEN_KEY, info);
     },
     setRoleList(roleList: RoleEnum[]) {
@@ -100,13 +101,14 @@ export const useUserStore = defineStore({
       }
     },
     async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
+      this.setToken('xxsatyoekn');
+
+      console.log(!this.getToken);
+
+      if (!this.getToken) return null;
       console.log('登录完成');
-      // console.log(!this.getToken);
-      // TODO: 真实登录需要解开
-      // if (!this.getToken) return null;
       // get user info
       const userInfo = await this.getUserInfoAction();
-
       const sessionTimeout = this.sessionTimeout;
       console.log('sessionTimeout', sessionTimeout);
       if (sessionTimeout) {
@@ -133,7 +135,14 @@ export const useUserStore = defineStore({
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
-      const userInfo = await getUserInfo();
+      // const userInfo = await getUserInfo();
+      const userInfo = {
+        userId: 'id-001',
+        username: 'admin',
+        realName: 'Toms',
+        avatar: 'xxx',
+        roles: [{ roleName: '管理员', value: 'ooo' }],
+      };
       const { roles = [] } = userInfo;
       if (isArray(roles)) {
         const roleList = roles.map((item) => item.value) as RoleEnum[];

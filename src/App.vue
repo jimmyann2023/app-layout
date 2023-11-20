@@ -1,5 +1,5 @@
 <template>
-  <ConfigProvider :locale="getAntdLocale">
+  <ConfigProvider :locale="getAntdLocale" :theme="themeConfig">
     <AppProvider>
       <RouterView />
     </AppProvider>
@@ -7,18 +7,30 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import { ConfigProvider } from 'ant-design-vue';
 import { AppProvider } from '@/components/Application';
+import { useDarkModeTheme } from '@/hooks/setting/useDarkModeTheme';
 import { useTitle } from '@/hooks/web/useTitle';
 import { useLocale } from '@/locales/useLocale';
-import { useUserStore } from './store/modules/user';
 import 'dayjs/locale/zh-cn';
 
-// TODO: 这里是直接模拟登录后的情况 需要清除
-console.log('准备登录');
-const login = useUserStore();
-login.afterLoginAction();
+const { isDark, darkTheme } = useDarkModeTheme();
 
+const themeConfig = computed(() =>
+  Object.assign(
+    {
+      token: {
+        colorPrimary: '#0960bd',
+        colorSuccess: '#55D187',
+        colorWarning: '#EFBD47',
+        colorError: '#ED6F6F',
+        colorInfo: '#0960bd',
+      },
+    },
+    isDark.value ? darkTheme : {},
+  ),
+);
 // support Multi-language
 const { getAntdLocale } = useLocale();
 // 页面变动时改变浏览器顶部的标签名字

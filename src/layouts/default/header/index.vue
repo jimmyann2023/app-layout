@@ -90,6 +90,7 @@ const {
   getMenuWidth,
   getIsMixSidebar,
 } = useMenuSetting();
+
 const { getUseErrorHandle, getShowSettingButton, getSettingButtonPosition } = useRootSetting();
 
 const {

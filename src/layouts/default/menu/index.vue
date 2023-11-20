@@ -7,10 +7,10 @@ import { BasicMenu } from '@/components/Menu';
 import { SimpleMenu } from '@/components/SimpleMenu';
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-import { useRootSetting } from '@/hooks/setting/useRootSetting.ts';
+import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { useAppInject } from '@/hooks/web/useAppInject';
 import { useDesign } from '@/hooks/web/useDesign';
-import { useGo } from '@/hooks/web/usePage.ts';
+import { useGo } from '@/hooks/web/usePage';
 import { openWindow } from '@/utils';
 import { isHttpUrl } from '@/utils/is';
 import { propTypes } from '@/utils/propTypes';
@@ -167,7 +167,6 @@ export default defineComponent({
   },
 });
 </script>
-
 <style lang="less">
 @prefix-cls: ~'@{namespace}-layout-menu';
 @logo-prefix-cls: ~'@{namespace}-app-logo';
