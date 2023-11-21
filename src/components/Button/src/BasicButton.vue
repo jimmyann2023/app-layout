@@ -4,18 +4,20 @@
       <slot name="icon"></slot>
     </template>
     <template #default="data">
-      <Icon :icon="preIcon" v-if="preIcon" :size="iconSize" />
+      <Icon v-if="preIcon" :icon="preIcon" :size="iconSize" />
       <slot v-bind="data || {}"></slot>
-      <Icon :icon="postIcon" v-if="postIcon" :size="iconSize" />
+      <Icon v-if="postIcon" :icon="postIcon" :size="iconSize" />
     </template>
   </Button>
 </template>
 
 <script lang="ts" setup>
-import { ComponentOptionsMixin, computed, unref } from 'vue';
 import { Button } from 'ant-design-vue';
+import { ComponentOptionsMixin, computed, unref } from 'vue';
+
 import Icon from '@/components/Icon/Icon.vue';
 import { useAttrs } from '@/hooks/useAttrs';
+
 import { buttonProps } from './props';
 
 defineOptions({

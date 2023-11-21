@@ -1,4 +1,5 @@
 import type { RouteLocationNormalized } from 'vue-router';
+
 import type { DropMenu } from '@/components/Dropdown/index';
 
 export enum TabContentEnum {

@@ -1,9 +1,10 @@
+import { resolve } from 'node:path';
+
 import { generate } from '@ant-design/colors';
 // @ts-ignore: typo
 /* import { getThemeVariables } from 'ant-design-vue/dist/theme'; */
 import { theme } from 'ant-design-vue/lib';
 import convertLegacyToken from 'ant-design-vue/lib/theme/convertLegacyToken';
-import { resolve } from 'node:path';
 
 const { defaultAlgorithm, defaultSeed } = theme;
 // less global variable 全局主题色

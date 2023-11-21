@@ -1,4 +1,5 @@
 import type { MergeAll } from '@/utils/types';
+
 import type { BarMap } from './types';
 
 export const BAR_MAP: BarMap = {

@@ -1,8 +1,8 @@
 <template>
   <SvgIcon
+    v-if="isSvgIcon"
     :size="size"
     :name="getSvgIcon"
-    v-if="isSvgIcon"
     :class="[$attrs.class, 'anticon']"
     :spin="spin"
   />
@@ -14,11 +14,13 @@
   ></span>
 </template>
 <script lang="ts" setup>
+import Iconify from '@purge-icons/generated';
 import type { PropType } from 'vue';
 import { computed, CSSProperties, nextTick, onMounted, ref, unref, watch } from 'vue';
-import Iconify from '@purge-icons/generated';
+
 import { isString } from '@/utils/is';
 import { propTypes } from '@/utils/propTypes';
+
 import SvgIcon from './src/SvgIcon.vue';
 
 const SVG_END_WITH_FLAG = '|svg';

@@ -2,7 +2,7 @@
   <div :class="[prefixCls, `${prefixCls}--${theme}`]">
     <a-breadcrumb :routes="routes">
       <template #itemRender="{ route, routes: routesMatched, paths }">
-        <Icon :icon="getIcon(route)" v-if="getShowBreadCrumbIcon && getIcon(route)" />
+        <Icon v-if="getShowBreadCrumbIcon && getIcon(route)" :icon="getIcon(route)" />
         <span v-if="!hasRedirect(routesMatched, route)">
           {{ t(route.name || route.meta.title) }}
         </span>
@@ -14,10 +14,11 @@
   </div>
 </template>
 <script lang="ts">
+import { Breadcrumb } from 'ant-design-vue';
 import { defineComponent, ref, watchEffect } from 'vue';
 import type { RouteLocationMatched } from 'vue-router';
 import { useRouter } from 'vue-router';
-import { Breadcrumb } from 'ant-design-vue';
+
 import Icon from '@/components/Icon/Icon.vue';
 import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { useDesign } from '@/hooks/web/useDesign';

@@ -3,7 +3,6 @@
     <template v-for="item in menuTypeList || []" :key="item.title">
       <Tooltip :title="item.title" placement="bottom">
         <div
-          @click="handler(item)"
           :class="[
             `${prefixCls}__item`,
             `${prefixCls}__item--${item.type}`,
@@ -11,6 +10,7 @@
               [`${prefixCls}__item--active`]: def === item.type,
             },
           ]"
+          @click="handler(item)"
         >
           <div class="mix-sidebar"></div>
         </div>
@@ -19,9 +19,11 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
 import { Tooltip } from 'ant-design-vue';
+import { defineComponent, PropType } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
+
 import { menuTypeList } from '../enum';
 
 export default defineComponent({

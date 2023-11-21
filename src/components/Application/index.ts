@@ -1,4 +1,5 @@
 import { withInstall } from '@/utils';
+
 import appDarkModeToggle from './src/AppDarkModeToggle.vue';
 import appLocalePicker from './src/AppLocalePicker.vue';
 import appLogo from './src/AppLogo.vue';

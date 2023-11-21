@@ -1,25 +1,25 @@
 <template>
-  <div :class="getClass" ref="wrapperRef">
+  <div ref="wrapperRef" :class="getClass">
     <PageHeader
+      v-if="getShowHeader"
+      v-bind="omit($attrs, 'class')"
+      ref="headerRef"
       :ghost="ghost"
       :title="title"
-      v-bind="omit($attrs, 'class')"
       :style="getHeaderStyle"
-      ref="headerRef"
-      v-if="getShowHeader"
     >
       <template #default>
         <template v-if="content">
           {{ content }}
         </template>
-        <slot name="headerContent" v-else></slot>
+        <slot v-else name="headerContent"></slot>
       </template>
-      <template #[item]="data" v-for="item in getHeaderSlots">
+      <template v-for="item in getHeaderSlots" #[item]="data">
         <slot :name="item" v-bind="data || {}"></slot>
       </template>
     </PageHeader>
 
-    <div class="overflow-hidden" :class="getContentClass" :style="getContentStyle" ref="contentRef">
+    <div ref="contentRef" class="overflow-hidden" :class="getContentClass" :style="getContentStyle">
       <slot></slot>
     </div>
 
@@ -34,6 +34,8 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { PageHeader } from 'ant-design-vue';
+import { omit } from 'lodash-es';
 import {
   computed,
   CSSProperties,
@@ -45,13 +47,13 @@ import {
   useSlots,
   watch,
 } from 'vue';
-import { PageHeader } from 'ant-design-vue';
-import { omit } from 'lodash-es';
+
 import { PageWrapperFixedHeightKey } from '@/enums/pageEnum';
 import { useContentHeight } from '@/hooks/web/useContentHeight';
 import { useDesign } from '@/hooks/web/useDesign';
 import { useLayoutHeight } from '@/layouts/default/content/useContentViewHeight';
 import { propTypes } from '@/utils/propTypes';
+
 import PageFooter from './PageFooter.vue';
 
 defineOptions({

@@ -18,21 +18,22 @@
         </TabPane>
       </template>
 
-      <template #rightExtra v-if="getShowRedo || getShowQuick">
+      <template v-if="getShowRedo || getShowQuick" #rightExtra>
         <SettingButton v-if="(getShowFold && getIsUnFold) || !getShowHeader" />
         <TabRedo v-if="getShowRedo" />
-        <TabContent isExtra :tabItem="$route" v-if="getShowQuick" />
+        <TabContent v-if="getShowQuick" isExtra :tabItem="$route" />
         <FoldButton v-if="getShowFold" />
       </template>
     </Tabs>
   </div>
 </template>
 <script lang="ts">
+import { useMouse } from '@vueuse/core';
+import { Tabs } from 'ant-design-vue';
 import { computed, defineComponent, ref, unref } from 'vue';
 import type { RouteLocationNormalized, RouteMeta } from 'vue-router';
 import { useRouter } from 'vue-router';
-import { useMouse } from '@vueuse/core';
-import { Tabs } from 'ant-design-vue';
+
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
@@ -43,6 +44,7 @@ import { listenerRouteChange } from '@/router/mitt/routeChange';
 import { multipleTabHeight } from '@/settings/designSetting';
 import { useMultipleTabStore } from '@/store/modules/multipleTab';
 import { useUserStore } from '@/store/modules/user';
+
 import FoldButton from './components/FoldButton.vue';
 import SettingButton from './components/SettingButton.vue';
 import TabContent from './components/TabContent.vue';

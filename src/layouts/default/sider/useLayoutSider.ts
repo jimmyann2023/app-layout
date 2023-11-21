@@ -1,6 +1,7 @@
+import { useDebounceFn } from '@vueuse/core';
 import type { Ref } from 'vue';
 import { computed, nextTick, onMounted, unref } from 'vue';
-import { useDebounceFn } from '@vueuse/core';
+
 import { TriggerEnum } from '@/enums/menuEnum';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useAppStore } from '@/store/modules/app';

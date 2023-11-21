@@ -1,13 +1,15 @@
-import { unref } from 'vue';
-import { RouteLocationNormalized, Router } from 'vue-router';
 import { Modal, notification } from 'ant-design-vue';
 import nProgress from 'nprogress';
+import { unref } from 'vue';
+import { RouteLocationNormalized, Router } from 'vue-router';
+
 import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting';
 import { setRouteChange } from '@/router/mitt/routeChange';
 import projectSetting from '@/settings/projectSetting';
 import { useAppStoreWithOut } from '@/store/modules/app';
 import { useUserStoreWithOut } from '@/store/modules/user';
 import { warn } from '@/utils/log';
+
 import { createParamMenuGuard } from './paramMenuGuard';
 import { createPermissionGuard } from './permissionGuard';
 import { createStateGuard } from './stateGuard';

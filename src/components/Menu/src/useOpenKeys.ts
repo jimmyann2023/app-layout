@@ -1,10 +1,12 @@
-import { computed, Ref, toRaw, unref } from 'vue';
 import { useTimeoutFn } from '@vueuse/core';
 import { uniq } from 'lodash-es';
+import { computed, Ref, toRaw, unref } from 'vue';
+
 import { MenuModeEnum } from '@/enums/menuEnum';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { getAllParentPath } from '@/router/helper/menuHelper';
 import type { Menu as MenuType } from '@/router/types';
+
 import type { Key, MenuState } from './types';
 
 export function useOpenKeys(

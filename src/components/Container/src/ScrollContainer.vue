@@ -11,8 +11,10 @@
 
 <script lang="ts" setup>
 import { nextTick, ref, unref } from 'vue';
+
 import { Scrollbar, ScrollbarType } from '@/components/Scrollbar';
 import { useScrollTo } from '@/hooks/event/useScrollTo';
+
 import { type Nullable } from '../src/typing';
 
 defineOptions({ name: 'ScrollContainer' });

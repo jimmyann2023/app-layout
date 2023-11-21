@@ -1,7 +1,7 @@
 <template>
   <Layout :class="prefixCls">
     <LayoutFeatures />
-    <LayoutHeader fixed v-if="getShowFullHeaderRef" />
+    <LayoutHeader v-if="getShowFullHeaderRef" fixed />
     <Layout :class="[layoutClass, `${prefixCls}-out`]">
       <LayoutSideBar v-if="getShowSidebar || getIsMobile" />
       <Layout :class="`${prefixCls}-main`">
@@ -13,14 +13,16 @@
   </Layout>
 </template>
 <script lang="ts">
-import { computed, defineComponent, unref } from 'vue';
 import { Layout } from 'ant-design-vue';
+import { computed, defineComponent, unref } from 'vue';
+
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
 import { useAppInject } from '@/hooks/web/useAppInject';
 import { useDesign } from '@/hooks/web/useDesign';
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
+
 import LayoutContent from './content/index.vue';
 import LayoutHeader from './header/index.vue';
 import LayoutMultipleHeader from './header/MultipleHeader.vue';

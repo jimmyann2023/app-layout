@@ -8,13 +8,13 @@ import {
 } from '@/enums/appEnum';
 import { CacheTypeEnum } from '@/enums/cacheEnum';
 import { MenuModeEnum, MenuTypeEnum, MixSidebarTriggerEnum, TriggerEnum } from '@/enums/menuEnum';
+import type { ProjectConfig } from '#/config';
+
 import {
   APP_PRESET_COLOR_LIST,
   HEADER_PRESET_BG_COLOR_LIST,
   SIDE_BAR_BG_COLOR_LIST,
 } from './designSetting';
-
-import type { ProjectConfig } from '#/config';
 
 // 改动后需要清空浏览器缓存
 const setting: ProjectConfig = {

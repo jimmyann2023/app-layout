@@ -1,6 +1,7 @@
+import { defineStore } from 'pinia';
 import { toRaw, unref } from 'vue';
 import type { RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-router';
-import { defineStore } from 'pinia';
+
 import { MULTIPLE_TABS_KEY } from '@/enums/cacheEnum';
 import { PageEnum } from '@/enums/pageEnum';
 import { useGo, useRedo } from '@/hooks/web/usePage';

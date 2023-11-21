@@ -1,6 +1,7 @@
+import { uniqBy } from 'lodash-es';
 import { computed, toRaw, unref } from 'vue';
 import { useRouter } from 'vue-router';
-import { uniqBy } from 'lodash-es';
+
 import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
 import type { AppRouteRecordRaw } from '@/router/types';
 import { useMultipleTabStore } from '@/store/modules/multipleTab';

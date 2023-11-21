@@ -16,9 +16,11 @@ import {
   watch,
   watchEffect,
 } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
 import { mitt } from '@/utils/mitt';
 import { propTypes } from '@/utils/propTypes';
+
 import type { SubMenuProvider } from './types';
 import { createSimpleRootMenuContext, type MenuEmitterEvents } from './useSimpleMenuContext';
 

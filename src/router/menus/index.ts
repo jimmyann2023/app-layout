@@ -1,5 +1,6 @@
-import type { RouteRecordNormalized } from 'vue-router';
 import { pathToRegexp } from 'path-to-regexp';
+import type { RouteRecordNormalized } from 'vue-router';
+
 import { PermissionModeEnum } from '@/enums/appEnum';
 import { router } from '@/router';
 import { getAllParentPath, transformMenuModule } from '@/router/helper/menuHelper';

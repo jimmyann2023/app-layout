@@ -3,6 +3,7 @@
  */
 
 import type { RouteLocationNormalized } from 'vue-router';
+
 import { getRawRoute } from '@/utils';
 import { mitt } from '@/utils/mitt';
 

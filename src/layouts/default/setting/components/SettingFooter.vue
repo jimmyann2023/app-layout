@@ -5,7 +5,7 @@
       {{ t('layout.setting.copyBtn') }}
     </a-button>
 
-    <a-button color="warning" block @click="handleResetSetting" class="my-3">
+    <a-button color="warning" block class="my-3" @click="handleResetSetting">
       <RedoOutlined class="mr-2" />
       {{ t('common.resetText') }}
     </a-button>
@@ -17,8 +17,9 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, unref } from 'vue';
 import { CopyOutlined, RedoOutlined } from '@ant-design/icons-vue';
+import { defineComponent, unref } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
 import { useI18n } from '@/hooks/web/useI18n';
 import { useMessage } from '@/hooks/web/useMessage';

@@ -1,8 +1,10 @@
 <script lang="tsx">
+import { Divider, Menu } from 'ant-design-vue';
 import type { CSSProperties, FunctionalComponent, PropType } from 'vue';
 import { computed, defineComponent, nextTick, onMounted, onUnmounted, ref, unref } from 'vue';
-import { Divider, Menu } from 'ant-design-vue';
+
 import Icon from '@/components/Icon/Icon.vue';
+
 import type { Axis, ContextMenuItem, ItemContentProps } from './typing';
 
 const prefixCls = 'context-menu';

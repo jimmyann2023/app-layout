@@ -2,7 +2,9 @@ import { CheckCircleFilled, CloseCircleFilled, InfoCircleFilled } from '@ant-des
 import { message as Message, Modal, notification } from 'ant-design-vue';
 import type { ModalFuncProps } from 'ant-design-vue/lib/modal/Modal';
 import { ConfigProps, NotificationArgsProps } from 'ant-design-vue/lib/notification';
+
 import { isString } from '@/utils/is';
+
 import { useI18n } from './useI18n';
 
 export interface NotifyApi {

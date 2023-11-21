@@ -1,13 +1,14 @@
 <template>
   <div class="anticon" :class="getAppLogoClass" @click="goHome">
     <img src="../../../assets/images/logo.png" />
-    <div class="ml-2 truncate md:opacity-100" :class="getTitleClass" v-show="showTitle">
+    <div v-show="showTitle" class="ml-2 truncate md:opacity-100" :class="getTitleClass">
       {{ title }}
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { computed, unref } from 'vue';
+
 import { PageEnum } from '@/enums/pageEnum';
 import { useGlobSetting } from '@/hooks/setting';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';

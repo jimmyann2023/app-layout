@@ -5,6 +5,7 @@
 </template>
 <script lang="ts" setup>
 import type { PropType } from 'vue';
+
 import { BasicTitle } from '@/components/Basic';
 
 defineOptions({ name: 'BasicModalHeader' });

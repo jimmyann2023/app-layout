@@ -7,13 +7,15 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import 'dayjs/locale/zh-cn';
+
 import { ConfigProvider } from 'ant-design-vue';
+import { computed } from 'vue';
+
 import { AppProvider } from '@/components/Application';
 import { useDarkModeTheme } from '@/hooks/setting/useDarkModeTheme';
 import { useTitle } from '@/hooks/web/useTitle';
 import { useLocale } from '@/locales/useLocale';
-import 'dayjs/locale/zh-cn';
 
 const { isDark, darkTheme } = useDarkModeTheme();
 

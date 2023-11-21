@@ -8,7 +8,9 @@ import {
   Ref,
   ref,
 } from 'vue';
+
 import { off, on } from '@/utils/domUtils';
+
 import { BAR_MAP, renderThumbStyle } from './util';
 
 export default defineComponent({

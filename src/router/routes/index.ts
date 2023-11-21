@@ -2,6 +2,7 @@ import { PageEnum } from '@/enums/pageEnum';
 import { t } from '@/hooks/web/useI18n';
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '@/router/routes/basic';
 import type { AppRouteModule, AppRouteRecordRaw } from '@/router/types';
+
 import { mainOutRoutes } from './mainOut';
 
 // import.meta.glob() 直接引入所有的模块 Vite 独有的功能

@@ -1,5 +1,6 @@
 import type { BaseResponse } from '@/utils/http/request';
 import { request } from '@/utils/http/request';
+
 import { GetUserInfoModel, LoginParams, LoginResultModel } from './model/userModel';
 
 enum Api {

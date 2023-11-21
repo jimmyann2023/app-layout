@@ -1,4 +1,5 @@
 import type { Router } from 'vue-router';
+
 import { PageEnum } from '@/enums/pageEnum';
 import { removeTabChangeListener } from '@/router/mitt/routeChange';
 import { useAppStore } from '@/store/modules/app';

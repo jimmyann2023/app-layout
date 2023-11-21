@@ -1,13 +1,15 @@
 <template>
   <span :class="getClass">
     <slot></slot>
-    <BasicHelp :class="`${prefixCls}-help`" v-if="helpMessage" :text="helpMessage" />
+    <BasicHelp v-if="helpMessage" :class="`${prefixCls}-help`" :text="helpMessage" />
   </span>
 </template>
 <script lang="ts" setup>
 import type { PropType } from 'vue';
 import { computed, useSlots } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
+
 import BasicHelp from './BasicHelp.vue';
 
 const props = defineProps({

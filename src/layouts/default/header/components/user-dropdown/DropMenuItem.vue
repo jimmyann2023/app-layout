@@ -7,8 +7,9 @@
   </MenuItem>
 </template>
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance } from 'vue';
 import { Menu } from 'ant-design-vue';
+import { computed, defineComponent, getCurrentInstance } from 'vue';
+
 import Icon from '@/components/Icon/Icon.vue';
 import { propTypes } from '@/utils/propTypes';
 

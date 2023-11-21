@@ -1,5 +1,7 @@
 import antdLocale from 'ant-design-vue/es/locale/zh_CN';
+
 import { deepMerge } from '@/utils';
+
 import { genMessage } from '../helper';
 
 const modules = import.meta.glob('./zh-CN/**/*.json', { eager: true });

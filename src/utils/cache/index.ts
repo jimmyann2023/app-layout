@@ -1,5 +1,6 @@
 import { DEFAULT_CACHE_TIME, SHOULD_ENABLE_STORAGE_ENCRYPTION } from '@/settings/encryptionSetting';
 import { getStorageShortName } from '@/utils/env';
+
 import { createStorage as create, CreateStorageParams } from './storageCache';
 
 export type Options = Partial<CreateStorageParams>;

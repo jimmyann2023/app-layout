@@ -1,7 +1,7 @@
 <template>
   <li :class="getClass">
     <template v-if="!getCollapse">
-      <div :class="`${prefixCls}-submenu-title`" @click.stop="handleClick" :style="getItemStyle">
+      <div :class="`${prefixCls}-submenu-title`" :style="getItemStyle" @click.stop="handleClick">
         <slot name="title"></slot>
         <Icon
           icon="eva:arrow-ios-downward-outline"
@@ -10,21 +10,21 @@
         />
       </div>
       <CollapseTransition>
-        <ul :class="prefixCls" v-show="state.opened">
+        <ul v-show="state.opened" :class="prefixCls">
           <slot></slot>
         </ul>
       </CollapseTransition>
     </template>
 
     <Popover
+      v-else
       placement="right"
       :overlayClassName="`${prefixCls}-menu-popover`"
-      v-else
       :open="getIsOpend"
-      @on-open-change="handleVisibleChange"
       :overlayStyle="getOverlayStyle"
       :overlayInnerStyle="{ padding: 0 }"
       :align="{ offset: [0, 0] }"
+      @on-open-change="handleVisibleChange"
     >
       <div :class="getSubClass" v-bind="getEvents(false)">
         <div
@@ -57,15 +57,17 @@
 </template>
 
 <script lang="ts" setup>
+import { Popover } from 'ant-design-vue';
 import type { CSSProperties, PropType } from 'vue';
 import { computed, getCurrentInstance, inject, onBeforeMount, provide, reactive, unref } from 'vue';
-import { Popover } from 'ant-design-vue';
+
 import Icon from '@/components/Icon/Icon.vue';
 import { CollapseTransition } from '@/components/Transition';
 import { useDesign } from '@/hooks/web/useDesign';
 import { isBoolean, isObject } from '@/utils/is';
 import { mitt } from '@/utils/mitt';
 import { propTypes } from '@/utils/propTypes';
+
 import type { Recordable, SubMenuProvider, TimeoutHandle } from './types';
 import { useMenuItem } from './useMenu';
 import { useSimpleRootMenuContext } from './useSimpleMenuContext';

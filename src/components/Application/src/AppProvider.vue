@@ -1,9 +1,11 @@
 <script lang="ts">
 import { defineComponent, ref, toRefs, unref } from 'vue';
+
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
 import { createBreakpointListen } from '@/hooks/event/useBreakpoint';
 import { prefixCls } from '@/settings/designSetting';
 import { useAppStore } from '@/store/modules/app';
+
 import { createAppProviderContext } from './useAppContext';
 
 const props = {

@@ -1,7 +1,8 @@
+import { intersectionWith, isEqual, mergeWith, unionWith } from 'lodash-es';
 import type { App, Component } from 'vue';
 import { unref } from 'vue';
 import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router';
-import { intersectionWith, isEqual, mergeWith, unionWith } from 'lodash-es';
+
 import { isArray, isObject } from '@/utils/is';
 
 export const noop = () => {};
@@ -119,13 +120,13 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
 }
 
 // https://github.com/vant-ui/vant/issues/8302
-type EventShim = {
+interface EventShim {
   new (...args: any[]): {
     $props: {
       onClick?: (...args: any[]) => void;
     };
   };
-};
+}
 
 export type WithInstall<T> = T & {
   install(app: App): void;

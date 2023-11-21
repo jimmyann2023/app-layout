@@ -26,13 +26,15 @@
   </Layout.Sider>
 </template>
 <script lang="ts" setup>
-import { computed, CSSProperties, h, ref, unref } from 'vue';
 import { Layout } from 'ant-design-vue';
+import { computed, CSSProperties, h, ref, unref } from 'vue';
+
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useAppInject } from '@/hooks/web/useAppInject';
 import { useDesign } from '@/hooks/web/useDesign';
 import LayoutTrigger from '@/layouts/default/trigger/index.vue';
+
 import LayoutMenu from '../menu/index.vue';
 import DragBar from './DragBar.vue';
 import { useDragLine, useSiderEvent, useTrigger } from './useLayoutSider';

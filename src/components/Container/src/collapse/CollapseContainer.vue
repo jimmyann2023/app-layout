@@ -1,11 +1,13 @@
 <script lang="tsx">
-import { defineComponent, type ExtractPropTypes, type PropType, ref, unref } from 'vue';
 import { useTimeoutFn } from '@vueuse/core';
 import { Skeleton } from 'ant-design-vue';
 import { isNil } from 'lodash-es';
+import { defineComponent, type ExtractPropTypes, type PropType, ref, unref } from 'vue';
+
 import { CollapseTransition } from '@/components/Transition';
 import { useDesign } from '@/hooks/web/useDesign';
 import { triggerWindowResize } from '@/utils/event';
+
 import CollapseHeader from './CollapseHeader.vue';
 
 const collapseContainerProps = {

@@ -9,12 +9,12 @@ import { useLocaleStore } from '@/store/modules/locale';
 import { deepMerge } from '@/utils';
 import { Persistent } from '@/utils/cache/persistent';
 import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env';
+import type { ProjectConfig } from '#/config';
+
 import { updateDarkTheme } from './theme/dark';
 import { updateHeaderBgColor, updateSidebarBgColor } from './theme/updateBackground';
 import { updateColorWeak } from './theme/updateColorWeak';
 import { updateGrayMode } from './theme/updateGrayMode';
-
-import type { ProjectConfig } from '#/config';
 
 // Initial project configuration
 export function initAppConfigStore() {

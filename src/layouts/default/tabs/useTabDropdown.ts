@@ -1,10 +1,12 @@
 import type { ComputedRef } from 'vue';
 import { computed, reactive, unref } from 'vue';
 import { RouteLocationNormalized, useRouter } from 'vue-router';
+
 import type { DropMenu } from '@/components/Dropdown';
 import { useI18n } from '@/hooks/web/useI18n';
 import { useTabs } from '@/hooks/web/useTabs';
 import { useMultipleTabStore } from '@/store/modules/multipleTab';
+
 import type { TabContentProps } from './types';
 import { MenuEventEnum } from './types';
 

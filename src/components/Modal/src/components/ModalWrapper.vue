@@ -1,16 +1,18 @@
 <template>
   <ScrollContainer ref="wrapperRef" :scrollHeight="realHeight">
-    <div ref="spinRef" :style="spinStyle" v-loading="loading" :loading-tip="loadingTip">
+    <div ref="spinRef" v-loading="loading" :style="spinStyle" :loading-tip="loadingTip">
       <slot></slot>
     </div>
   </ScrollContainer>
 </template>
 <script lang="ts" setup>
+import { useMutationObserver } from '@vueuse/core';
 import type { CSSProperties } from 'vue';
 import { computed, nextTick, onMounted, onUnmounted, ref, unref, watch, watchEffect } from 'vue';
-import { useMutationObserver } from '@vueuse/core';
+
 import { ScrollContainer } from '@/components/Container';
 import { type AnyFunction, useWindowSizeFn } from '@/hooks/event/useWindowSizeFn';
+
 import { createModalContext } from '../hooks/useModalContext';
 
 defineOptions({ name: 'ModalWrapper', inheritAttrs: false });

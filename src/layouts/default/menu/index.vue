@@ -1,6 +1,7 @@
 <script lang="tsx">
 import type { CSSProperties, PropType } from 'vue';
 import { computed, defineComponent, toRef, unref } from 'vue';
+
 import { AppLogo } from '@/components/Application';
 import { ScrollContainer } from '@/components/Container';
 import { BasicMenu } from '@/components/Menu';
@@ -14,6 +15,7 @@ import { useGo } from '@/hooks/web/usePage';
 import { openWindow } from '@/utils';
 import { isHttpUrl } from '@/utils/is';
 import { propTypes } from '@/utils/propTypes';
+
 import { useSplitMenu } from './useLayoutMenu';
 
 export default defineComponent({

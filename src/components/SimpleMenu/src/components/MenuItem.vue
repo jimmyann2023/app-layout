@@ -1,6 +1,6 @@
 <template>
-  <li :class="getClass" @click.stop="handleClickItem" :style="getCollapse ? {} : getItemStyle">
-    <Tooltip placement="right" v-if="showTooltip">
+  <li :class="getClass" :style="getCollapse ? {} : getItemStyle" @click.stop="handleClickItem">
+    <Tooltip v-if="showTooltip" placement="right">
       <template #title>
         <slot name="title"></slot>
       </template>
@@ -17,10 +17,12 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, getCurrentInstance, PropType, ref, unref, useSlots, watch } from 'vue';
 import { Tooltip } from 'ant-design-vue';
+import { computed, getCurrentInstance, PropType, ref, unref, useSlots, watch } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
 import { propTypes } from '@/utils/propTypes';
+
 import { useMenuItem } from './useMenu';
 import { useSimpleRootMenuContext } from './useSimpleMenuContext';
 

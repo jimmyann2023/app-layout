@@ -7,6 +7,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, unref } from 'vue';
+
 import { SvgIcon } from '@/components/Icon';
 import { ThemeEnum } from '@/enums/appEnum';
 import { useRootSetting } from '@/hooks/setting/useRootSetting';

@@ -1,10 +1,11 @@
 import { Slots } from 'vue';
+
 import { isFunction } from '@/utils/is';
 
-type RenderOpts = {
+interface RenderOpts {
   disabled: boolean;
   [key: string]: any;
-};
+}
 /**
  * @description:  Get slot to prevent empty error
  */

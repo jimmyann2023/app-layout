@@ -1,4 +1,5 @@
 import type { ComponentPublicInstance, DirectiveBinding, ObjectDirective } from 'vue';
+
 import { on } from '@/utils/domUtils';
 import { isServer } from '@/utils/is';
 

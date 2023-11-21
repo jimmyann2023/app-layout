@@ -1,6 +1,7 @@
 <script lang="ts">
-import { computed, defineComponent, unref } from 'vue';
 import { BackTop } from 'ant-design-vue';
+import { computed, defineComponent, unref } from 'vue';
+
 import { SettingButtonPositionEnum } from '@/enums/appEnum';
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
 import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';

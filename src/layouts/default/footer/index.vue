@@ -1,5 +1,5 @@
 <template>
-  <Footer :class="prefixCls" v-if="getShowLayoutFooter" ref="footerRef">
+  <Footer v-if="getShowLayoutFooter" ref="footerRef" :class="prefixCls">
     <div :class="`${prefixCls}__links`">
       <span>咨询热线: 0577-61318188 (工作时间: 8:30-17:30) © 1999-2029</span>
       <a>中模网 </a>
@@ -10,14 +10,16 @@
 </template>
 
 <script lang="ts">
+import { Layout } from 'ant-design-vue';
 import { computed, defineComponent, ref, unref } from 'vue';
 import { useRouter } from 'vue-router';
-import { Layout } from 'ant-design-vue';
+
 import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { useDesign } from '@/hooks/web/useDesign';
 import { useI18n } from '@/hooks/web/useI18n';
 import { INTER_URL } from '@/settings/siteSetting';
 import { openWindow } from '@/utils';
+
 import { useLayoutHeight } from '../content/useContentViewHeight';
 
 export default defineComponent({

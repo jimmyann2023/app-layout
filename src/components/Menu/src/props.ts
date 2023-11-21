@@ -1,10 +1,12 @@
-import type { PropType } from 'vue';
 import type { MenuTheme } from 'ant-design-vue';
 import type { MenuMode } from 'ant-design-vue/lib/menu/src/interface';
+import type { PropType } from 'vue';
+
 import { ThemeEnum } from '@/enums/appEnum';
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
 import type { Menu } from '@/router/types';
 import { propTypes } from '@/utils/propTypes';
+
 import type { Key } from './types';
 
 export const basicProps = {

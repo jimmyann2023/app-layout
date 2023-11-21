@@ -1,7 +1,7 @@
 <template>
   <MenuItem
-    :name="item.path"
     v-if="!menuHasChildren(item) && getShowMenu"
+    :name="item.path"
     v-bind="$props"
     :class="getLevelClass"
   >
@@ -18,8 +18,8 @@
     </template>
   </MenuItem>
   <SubMenu
-    :name="item.path"
     v-if="menuHasChildren(item) && getShowMenu"
+    :name="item.path"
     :class="[getLevelClass, theme]"
     :collapsedShowTitle="collapsedShowTitle"
   >
@@ -48,12 +48,14 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue';
 import { computed } from 'vue';
+
 import Icon from '@/components/Icon/Icon.vue';
 import { useDesign } from '@/hooks/web/useDesign';
 import { useI18n } from '@/hooks/web/useI18n';
 import { Menu } from '@/router/types';
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
 import { propTypes } from '@/utils/propTypes';
+
 import MenuItem from './components/MenuItem.vue';
 import SubMenu from './components/SubMenuItem.vue';
 

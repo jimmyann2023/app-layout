@@ -1,7 +1,8 @@
+import { useThrottleFn } from '@vueuse/core';
 import type { Ref } from 'vue';
 import { computed, ref, unref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { useThrottleFn } from '@vueuse/core';
+
 import { MenuSplitTyeEnum } from '@/enums/menuEnum';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useAppInject } from '@/hooks/web/useAppInject';

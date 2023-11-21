@@ -1,6 +1,7 @@
+import { useTitle as usePageTitle } from '@vueuse/core';
 import { unref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { useTitle as usePageTitle } from '@vueuse/core';
+
 import { useGlobSetting } from '@/hooks/setting';
 import { useI18n } from '@/hooks/web/useI18n';
 import { REDIRECT_NAME } from '@/router/constant';

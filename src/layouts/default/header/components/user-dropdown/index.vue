@@ -12,10 +12,10 @@
     <template #overlay>
       <Menu @click="handleMenuClick">
         <MenuItem
+          v-if="getShowDoc"
           key="doc"
           :text="t('layout.header.dropdownItemDoc')"
           icon="ion:document-text-outline"
-          v-if="getShowDoc"
         />
         <MenuDivider v-if="getShowDoc" />
         <!-- <MenuItem
@@ -43,9 +43,10 @@
 </template>
 <script lang="ts">
 // components
-import { computed, defineComponent } from 'vue';
 import { Dropdown, Menu } from 'ant-design-vue';
 import type { MenuInfo } from 'ant-design-vue/lib/menu/src/interface';
+import { computed, defineComponent } from 'vue';
+
 import headerImg from '@/assets/images/header.jpg';
 import { useModal } from '@/components/Modal';
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';

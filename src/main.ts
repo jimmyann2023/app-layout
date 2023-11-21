@@ -1,17 +1,20 @@
+import './styles/index.less';
+import 'uno.css';
+import 'ant-design-vue/dist/reset.css';
+// Register icon sprite
+import 'virtual:svg-icons-register';
+
 import { createApp } from 'vue';
+
 import { registerGlobComp } from '@/components/registerGlobComp';
 import { setupGlobDirectives } from '@/directives';
 import { setupI18n } from '@/locales/setupI18n';
 import { router, setupRouter } from '@/router';
 import { setupRouterGuard } from '@/router/guard';
 import { setupStore } from '@/store';
-import { initAppConfigStore } from './settings/initAppConfig';
+
 import App from './App.vue';
-import '@/styles/index.less';
-import 'uno.css';
-import 'ant-design-vue/dist/reset.css';
-// Register icon sprite
-import 'virtual:svg-icons-register';
+import { initAppConfigStore } from './settings/initAppConfig';
 
 async function bootstrap() {
   const app = createApp(App);

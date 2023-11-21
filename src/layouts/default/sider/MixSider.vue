@@ -20,15 +20,15 @@
     <ScrollContainer>
       <ul :class="`${prefixCls}-module`">
         <li
+          v-for="item in menuModules"
+          v-bind="getItemEvents(item)"
+          :key="item.path"
           :class="[
             `${prefixCls}-module__item `,
             {
               [`${prefixCls}-module__item--active`]: item.path === activePath,
             },
           ]"
-          v-bind="getItemEvents(item)"
-          v-for="item in menuModules"
-          :key="item.path"
         >
           <SimpleMenuTag :item="item" collapseParent dot />
           <img
@@ -49,7 +49,7 @@
       </ul>
     </ScrollContainer>
 
-    <div :class="`${prefixCls}-menu-list`" ref="sideRef" :style="getMenuStyle">
+    <div ref="sideRef" :class="`${prefixCls}-menu-list`" :style="getMenuStyle">
       <div
         v-show="openMenu"
         :class="[
@@ -77,8 +77,8 @@
       </ScrollContainer>
       <div
         v-show="getShowDragBar && openMenu"
-        :class="`${prefixCls}-drag-bar`"
         ref="dragBarRef"
+        :class="`${prefixCls}-drag-bar`"
       ></div>
     </div>
   </div>
@@ -87,6 +87,7 @@
 import type { CSSProperties } from 'vue';
 import { computed, defineComponent, onMounted, ref, unref, watch } from 'vue';
 import type { RouteLocationNormalized } from 'vue-router';
+
 import { AppLogo } from '@/components/Application';
 import { ScrollContainer } from '@/components/Container';
 import Icon from '@/components/Icon/Icon.vue';
@@ -103,6 +104,7 @@ import { listenerRouteChange } from '@/router/mitt/routeChange';
 import type { Menu } from '@/router/types';
 import { usePermissionStore } from '@/store/modules/permission';
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
+
 import LayoutTrigger from '../trigger/index.vue';
 import { useDragLine } from './useLayoutSider';
 

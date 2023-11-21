@@ -1,13 +1,14 @@
 /**
  * Multi-language related operations
  */
-import { computed, unref } from 'vue';
 import { Locale } from 'ant-design-vue/es/locale';
+import { computed, unref } from 'vue';
+
 import { useLocaleStoreWithOut } from '@/store/modules/locale';
+import type { LocaleType } from '#/config';
+
 import { loadLocalePool, setHtmlPageLang } from './helper';
 import { i18n } from './setupI18n';
-
-import type { LocaleType } from '#/config';
 
 interface LangModule {
   message: Recordable;

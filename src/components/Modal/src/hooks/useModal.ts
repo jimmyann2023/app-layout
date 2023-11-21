@@ -1,3 +1,5 @@
+import { tryOnUnmounted } from '@vueuse/core';
+import { isEqual } from 'lodash-es';
 import {
   computed,
   getCurrentInstance,
@@ -9,11 +11,11 @@ import {
   unref,
   watchEffect,
 } from 'vue';
-import { tryOnUnmounted } from '@vueuse/core';
-import { isEqual } from 'lodash-es';
+
 import { isProdMode } from '@/utils/env';
 import { isFunction } from '@/utils/is';
 import { error } from '@/utils/log';
+
 import type {
   ModalMethods,
   ModalProps,

@@ -1,5 +1,6 @@
-import { toRaw } from 'vue';
 import { defineStore } from 'pinia';
+import { toRaw } from 'vue';
+
 import { getMenuList } from '@/api/sys/menu';
 import { getPermCode } from '@/api/sys/user';
 import { PermissionModeEnum } from '@/enums/appEnum';
@@ -14,6 +15,7 @@ import type { AppRouteRecordRaw, Menu } from '@/router/types';
 import projectSetting from '@/settings/projectSetting';
 import { store } from '@/store';
 import { filter } from '@/utils/helper/treeHelper';
+
 import { useAppStoreWithOut } from './app';
 import { useUserStore } from './user';
 

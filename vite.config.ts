@@ -1,7 +1,9 @@
+import { resolve } from 'node:path';
+
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dayjs from 'dayjs';
-import { resolve } from 'node:path';
+import { presetTypography, presetUno } from 'unocss';
 import UnoCSS from 'unocss/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
@@ -9,9 +11,9 @@ import { defineConfig, loadEnv } from 'vite';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import PurgeIcons from 'vite-plugin-purge-icons';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import { generateModifyVars } from './src/utils/modifyVar';
+
 import pkg from './package.json';
-import { presetTypography, presetUno } from 'unocss';
+import { generateModifyVars } from './src/utils/modifyVar';
 const CWD = process.cwd();
 
 // 环境变量

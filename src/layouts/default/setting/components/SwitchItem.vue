@@ -3,18 +3,20 @@
     <span> {{ title }}</span>
     <Switch
       v-bind="getBindValue"
-      @change="handleChange"
       :disabled="disabled"
       :checkedChildren="t('layout.setting.on')"
       :unCheckedChildren="t('layout.setting.off')"
+      @change="handleChange"
     />
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue';
 import { Switch, type SwitchProps } from 'ant-design-vue';
+import { computed, defineComponent, PropType } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
 import { useI18n } from '@/hooks/web/useI18n';
+
 import { HandlerEnum } from '../enum';
 import { baseHandler } from '../handler';
 

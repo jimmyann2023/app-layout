@@ -7,9 +7,11 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
+
 import Icon from '@/components/Icon/Icon.vue';
 import { useDesign } from '@/hooks/web/useDesign';
 import { useI18n } from '@/hooks/web/useI18n';
+
 import { contentProps } from '../props';
 
 const { t } = useI18n();

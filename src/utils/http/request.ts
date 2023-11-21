@@ -1,7 +1,9 @@
 import { message as $message } from 'ant-design-vue';
 import type { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
+
 import { uniqueSlash } from '@/utils';
+
 import { getToken } from '../auth';
 
 export interface RequestOptions {
@@ -85,11 +87,11 @@ service.interceptors.response.use(
   },
 );
 
-export type Response<T = any> = {
+export interface Response<T = any> {
   code: number;
   message: string;
   data: T;
-};
+}
 
 export type BaseResponse<T = any> = Promise<Response<T>>;
 

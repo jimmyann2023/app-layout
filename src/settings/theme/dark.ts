@@ -1,11 +1,12 @@
 import { addClass, hasClass, removeClass } from '@/utils/domUtils';
+
 import { setCssVar } from './util';
 
-export type CustomColorType = {
+export interface CustomColorType {
   name: string;
   light: string;
   dark: string;
-};
+}
 
 /**
  * 自定义颜色列表

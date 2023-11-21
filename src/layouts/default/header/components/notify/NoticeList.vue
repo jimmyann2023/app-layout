@@ -6,7 +6,6 @@
           <template #title>
             <div class="title">
               <a-typography-paragraph
-                @click="handleTitleClick(item)"
                 style="width: 100%; margin-bottom: 0 !important"
                 :style="{ cursor: isTitleClickable ? 'pointer' : '' }"
                 :delete="!!item.titleDelete"
@@ -16,8 +15,9 @@
                     : false
                 "
                 :content="item.title"
+                @click="handleTitleClick(item)"
               />
-              <div class="extra" v-if="item.extra">
+              <div v-if="item.extra" class="extra">
                 <a-tag class="tag" :color="item.color">
                   {{ item.extra }}
                 </a-tag>
@@ -32,7 +32,7 @@
 
           <template #description>
             <div>
-              <div class="description" v-if="item.description">
+              <div v-if="item.description" class="description">
                 <a-typography-paragraph
                   style="width: 100%; margin-bottom: 0 !important"
                   :ellipsis="
@@ -54,14 +54,16 @@
   </a-list>
 </template>
 <script lang="ts">
-import type { FunctionalComponent } from 'vue';
-import { computed, defineComponent, PropType, ref, unref, watch } from 'vue';
 import { Avatar, List, Tag, Typography } from 'ant-design-vue';
 import type { ParagraphProps } from 'ant-design-vue/es/typography/Paragraph';
+import type { FunctionalComponent } from 'vue';
+import { computed, defineComponent, PropType, ref, unref, watch } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
 import { isNumber } from '@/utils/is';
 // types
 import type { StyleValue } from '@/utils/types';
+
 import { ListItem } from './data';
 
 export default defineComponent({

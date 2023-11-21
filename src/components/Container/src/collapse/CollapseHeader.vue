@@ -1,5 +1,6 @@
 <script lang="tsx">
 import { computed, defineComponent, type ExtractPropTypes, PropType, unref } from 'vue';
+
 import { BasicArrow, BasicTitle } from '@/components/Basic';
 import { useDesign } from '@/hooks/web/useDesign';
 

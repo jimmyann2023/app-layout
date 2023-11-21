@@ -1,6 +1,6 @@
 <template>
   <Modal v-bind="getBindValue" @cancel="handleCancel">
-    <template #closeIcon v-if="!$slots.closeIcon">
+    <template v-if="!$slots.closeIcon" #closeIcon>
       <ModalClose
         :canFullscreen="getProps.canFullscreen"
         :fullScreen="fullScreenRef"
@@ -9,7 +9,7 @@
       />
     </template>
 
-    <template #title v-if="!$slots.title">
+    <template v-if="!$slots.title" #title>
       <ModalHeader
         :helpMessage="getProps.helpMessage"
         :title="getMergeProps.title"
@@ -17,19 +17,19 @@
       />
     </template>
 
-    <template #footer v-if="!$slots.footer">
+    <template v-if="!$slots.footer" #footer>
       <ModalFooter v-bind="getBindValue" @ok="handleOk" @cancel="handleCancel">
-        <template #[item]="data" v-for="item in Object.keys($slots)">
+        <template v-for="item in Object.keys($slots)" #[item]="data">
           <slot :name="item" v-bind="data || {}"></slot>
         </template>
       </ModalFooter>
     </template>
 
     <ModalWrapper
+      ref="modalWrapperRef"
       :useWrapper="getProps.useWrapper"
       :footerOffset="wrapperFooterOffset"
       :fullScreen="fullScreenRef"
-      ref="modalWrapperRef"
       :loading="getProps.loading"
       :loading-tip="getProps.loadingTip"
       :minHeight="getProps.minHeight"
@@ -43,18 +43,20 @@
       <slot></slot>
     </ModalWrapper>
 
-    <template #[item]="data" v-for="item in Object.keys(omit($slots, 'default'))">
+    <template v-for="item in Object.keys(omit($slots, 'default'))" #[item]="data">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
   </Modal>
 </template>
 <script lang="ts" setup>
-import { computed, getCurrentInstance, nextTick, ref, toRef, unref, watch, watchEffect } from 'vue';
 import { omit } from 'lodash-es';
+import { computed, getCurrentInstance, nextTick, ref, toRef, unref, watch, watchEffect } from 'vue';
+
 import { useAttrs } from '@/hooks/useAttrs';
 import { useDesign } from '@/hooks/web/useDesign';
 import { deepMerge } from '@/utils';
 import { isFunction } from '@/utils/is';
+
 import Modal from './components/Modal';
 import ModalClose from './components/ModalClose.vue';
 import ModalFooter from './components/ModalFooter.vue';

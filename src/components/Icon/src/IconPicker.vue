@@ -1,25 +1,25 @@
 <template>
   <Input
+    v-model:value="currentSelect"
     readonly
     :style="{ width }"
     :placeholder="t('component.icon.placeholder')"
     :class="prefixCls"
-    v-model:value="currentSelect"
     @click="triggerPopover"
   >
     <template #addonAfter>
       <Popover
+        v-model="visible"
         placement="bottomLeft"
         trigger="click"
-        v-model="visible"
         :overlayClassName="`${prefixCls}-popover`"
       >
         <template #title>
           <div class="flex justify-between">
             <Input
               :placeholder="t('component.icon.search')"
-              @change="debounceHandleSearchChange"
               allowClear
+              @change="debounceHandleSearchChange"
             />
           </div>
         </template>
@@ -33,15 +33,15 @@
                   :key="icon"
                   :class="currentSelect === icon ? 'border border-primary' : ''"
                   class="p-2 w-1/8 cursor-pointer mr-1 mt-1 flex justify-center items-center border border-solid hover:border-primary"
-                  @click="handleClick(icon)"
                   :title="icon"
+                  @click="handleClick(icon)"
                 >
                   <SvgIcon v-if="isSvgMode" :name="icon" />
-                  <Icon :icon="icon" v-else />
+                  <Icon v-else :icon="icon" />
                 </li>
               </ul>
             </ScrollContainer>
-            <div class="flex py-2 items-center justify-center" v-if="getTotal >= pageSize">
+            <div v-if="getTotal >= pageSize" class="flex py-2 items-center justify-center">
               <Pagination
                 showLessItems
                 size="small"
@@ -58,15 +58,15 @@
 
         <div ref="trigger">
           <span
-            class="cursor-pointer px-2 py-1 flex items-center"
             v-if="isSvgMode && currentSelect"
+            class="cursor-pointer px-2 py-1 flex items-center"
           >
             <SvgIcon :name="currentSelect" />
           </span>
           <Icon
+            v-else
             :icon="currentSelect || 'ion:apps-outline'"
             class="cursor-pointer px-2 py-1"
-            v-else
           />
         </div>
       </Popover>
@@ -74,15 +74,17 @@
   </Input>
 </template>
 <script lang="ts" setup>
-import { ref, watch, watchEffect } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import { Empty, Input, Pagination, Popover } from 'ant-design-vue';
 import svgIcons from 'virtual:svg-icons-names';
+import { ref, watch, watchEffect } from 'vue';
+
 import { ScrollContainer } from '@/components/Container';
 import { useDesign } from '@/hooks/web/useDesign';
 import { useI18n } from '@/hooks/web/useI18n';
 import { usePagination } from '@/hooks/web/usePagination';
 import { copyText } from '@/utils/copyTextToClipboard';
+
 import iconsData from '../data/icons.data';
 import Icon from '../Icon.vue';
 import SvgIcon from './SvgIcon.vue';

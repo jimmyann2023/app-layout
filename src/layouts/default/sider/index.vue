@@ -15,11 +15,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
 import { Drawer } from 'ant-design-vue';
+import { defineComponent } from 'vue';
+
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useAppInject } from '@/hooks/web/useAppInject';
 import { useDesign } from '@/hooks/web/useDesign';
+
 import Sider from './LayoutSider.vue';
 import MixSider from './MixSider.vue';
 

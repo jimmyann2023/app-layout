@@ -1,16 +1,17 @@
 <template>
   <section
+    v-show="loading"
     class="full-loading"
     :class="{ absolute, [`${theme}`]: !!theme }"
     :style="[background ? `background-color: ${background}` : '']"
-    v-show="loading"
   >
     <Spin v-bind="$attrs" :tip="tip" :size="size" :spinning="loading" />
   </section>
 </template>
 <script lang="ts" setup>
-import { PropType } from 'vue';
 import { Spin } from 'ant-design-vue';
+import { PropType } from 'vue';
+
 import { SizeEnum } from '@/enums/sizeEnum';
 
 defineOptions({ name: 'Loading' });

@@ -27,9 +27,11 @@ import {
   unref,
   watch,
 } from 'vue';
+
 import componentSetting from '@/settings/componentSetting';
 import { addResizeListener, removeResizeListener } from '@/utils/event';
 import type { StyleValue } from '@/utils/types';
+
 import Bar from './bar';
 
 defineOptions({ name: 'Scrollbar' });

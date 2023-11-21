@@ -10,9 +10,11 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
 import { InputNumber } from 'ant-design-vue';
+import { defineComponent, PropType } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
+
 import { HandlerEnum } from '../enum';
 import { baseHandler } from '../handler';
 

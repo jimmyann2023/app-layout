@@ -1,4 +1,5 @@
 import type { Router, RouteRecordRaw } from 'vue-router';
+
 import { PageEnum } from '@/enums/pageEnum';
 import { RootRoute } from '@/router/routes';
 import { PAGE_NOT_FOUND_ROUTE } from '@/router/routes/basic';

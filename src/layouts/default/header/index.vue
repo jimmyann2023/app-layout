@@ -56,8 +56,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, unref } from 'vue';
 import { Layout } from 'ant-design-vue';
+import { computed, unref } from 'vue';
+
 import { AppLocalePicker, AppLogo } from '@/components/Application';
 import { SettingButtonPositionEnum } from '@/enums/appEnum';
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
@@ -69,6 +70,7 @@ import { useDesign } from '@/hooks/web/useDesign';
 import { useLocale } from '@/locales/useLocale';
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
 import { propTypes } from '@/utils/propTypes';
+
 import LayoutMenu from '../menu/index.vue';
 import LayoutTrigger from '../trigger/index.vue';
 import { ErrorAction, FullScreen, LayoutBreadcrumb, Notify, UserDropDown } from './components';

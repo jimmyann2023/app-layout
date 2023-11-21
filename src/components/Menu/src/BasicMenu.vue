@@ -6,11 +6,11 @@
     :openKeys="getOpenKeys"
     :inlineIndent="inlineIndent"
     :theme="theme"
-    @open-change="handleOpenChange"
     :class="getMenuClass"
-    @click="handleMenuClick"
     :subMenuOpenDelay="0.2"
     v-bind="getInlineCollapseOptions"
+    @open-change="handleOpenChange"
+    @click="handleMenuClick"
   >
     <template v-for="item in items" :key="item.path">
       <BasicSubMenuItem :item="item" :theme="theme" :isHorizontal="isHorizontal" />
@@ -18,21 +18,23 @@
   </Menu>
 </template>
 <script lang="ts" setup>
-import type { MenuState } from './types';
-import { computed, unref, reactive, watch, toRefs, ref } from 'vue';
 import { Menu, MenuProps } from 'ant-design-vue';
-import BasicSubMenuItem from './components/BasicSubMenuItem.vue';
-import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
-import { useOpenKeys } from './useOpenKeys';
+import { computed, reactive, ref, toRefs, unref, watch } from 'vue';
 import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
-import { isFunction } from '@/utils/is';
-import { basicProps } from './props';
+
+import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-import { REDIRECT_NAME } from '@/router/constant';
 import { useDesign } from '@/hooks/web/useDesign';
+import { REDIRECT_NAME } from '@/router/constant';
+import { getAllParentPath } from '@/router/helper/menuHelper';
 import { getCurrentParentPath } from '@/router/menus';
 import { listenerRouteChange } from '@/router/mitt/routeChange';
-import { getAllParentPath } from '@/router/helper/menuHelper';
+import { isFunction } from '@/utils/is';
+
+import BasicSubMenuItem from './components/BasicSubMenuItem.vue';
+import { basicProps } from './props';
+import type { MenuState } from './types';
+import { useOpenKeys } from './useOpenKeys';
 
 defineOptions({ name: 'BasicMenu' });
 

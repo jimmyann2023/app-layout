@@ -1,10 +1,11 @@
 <template>
-  <span :class="getTagClass" v-if="getShowTag">{{ getContent }}</span>
+  <span v-if="getShowTag" :class="getTagClass">{{ getContent }}</span>
 </template>
 
 <script lang="ts" setup>
 import type { PropType } from 'vue';
 import { computed } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
 import type { Menu } from '@/router/types';
 import { propTypes } from '@/utils/propTypes';

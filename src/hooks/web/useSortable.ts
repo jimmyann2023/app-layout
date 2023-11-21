@@ -1,6 +1,6 @@
+import type { Options } from 'sortablejs';
 import type { Ref } from 'vue';
 import { nextTick, unref } from 'vue';
-import type { Options } from 'sortablejs';
 
 export function useSortable(el?: HTMLElement | Ref<HTMLElement | undefined>, options?: Options) {
   function initSortable() {

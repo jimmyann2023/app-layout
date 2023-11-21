@@ -7,6 +7,7 @@
 import type { Pinia } from 'pinia';
 import type { PersistedStateFactoryOptions } from 'pinia-plugin-persistedstate';
 import { createPersistedState, Serializer } from 'pinia-plugin-persistedstate';
+
 import { cacheCipher, SHOULD_ENABLE_STORAGE_ENCRYPTION } from '@/settings/encryptionSetting';
 import { Encryption, EncryptionFactory } from '@/utils/cipher';
 import { getCommonStoragePrefix } from '@/utils/env';

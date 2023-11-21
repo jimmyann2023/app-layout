@@ -5,6 +5,7 @@
 </template>
 <script lang="ts" setup>
 import { Menu } from 'ant-design-vue';
+
 import { itemProps } from '../props';
 import MenuItemContent from './MenuItemContent.vue';
 

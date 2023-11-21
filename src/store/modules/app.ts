@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+
 import { ThemeEnum } from '@/enums/appEnum';
 import { API_ADDRESS, APP_DARK_MODE_KEY, PROJ_CFG_KEY } from '@/enums/cacheEnum';
 import { resetRouter } from '@/router';
@@ -6,7 +7,6 @@ import { darkMode } from '@/settings/designSetting';
 import { store } from '@/store';
 import { deepMerge } from '@/utils';
 import { Persistent } from '@/utils/cache/persistent';
-
 import type {
   HeaderSetting,
   MenuSetting,

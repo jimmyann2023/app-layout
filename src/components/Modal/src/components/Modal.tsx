@@ -1,7 +1,9 @@
-import { defineComponent, toRefs, unref } from 'vue';
 import { Modal } from 'ant-design-vue';
+import { defineComponent, toRefs, unref } from 'vue';
+
 import { useAttrs } from '@/hooks/useAttrs';
 import { extendSlots } from '@/utils/helper/tsxHelper';
+
 import { useModalDragMove } from '../hooks/useModalDrag';
 import { basicProps } from '../props';
 

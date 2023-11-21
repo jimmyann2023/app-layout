@@ -20,6 +20,7 @@
 <script lang="ts" setup>
 import { computed, PropType, reactive, ref, toRefs, unref, watch } from 'vue';
 import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
+
 import { useAttrs } from '@/hooks/useAttrs';
 import { useDesign } from '@/hooks/web/useDesign';
 import { REDIRECT_NAME } from '@/router/constant';
@@ -28,6 +29,7 @@ import type { Menu as MenuType } from '@/router/types';
 import { openWindow } from '@/utils';
 import { isFunction, isHttpUrl } from '@/utils/is';
 import { propTypes } from '@/utils/propTypes';
+
 import Menu from './components/Menu.vue';
 import SimpleSubMenu from './SimpleSubMenu.vue';
 import { MenuState } from './types';

@@ -4,9 +4,9 @@ import { updateHeaderBgColor, updateSidebarBgColor } from '@/settings/theme/upda
 import { updateColorWeak } from '@/settings/theme/updateColorWeak';
 import { updateGrayMode } from '@/settings/theme/updateGrayMode';
 import { useAppStore } from '@/store/modules/app';
-import { HandlerEnum } from './enum';
-
 import { ProjectConfig } from '#/config';
+
+import { HandlerEnum } from './enum';
 
 export function baseHandler(event: HandlerEnum, value: any) {
   const appStore = useAppStore();

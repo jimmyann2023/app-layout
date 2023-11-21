@@ -77,27 +77,47 @@ module.exports = {
     // prettier
     'prettier/prettier': 'error',
 
-    'simple-import-sort/imports': [
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+
+    /**
+     * 【强制】关键字前后有一个空格
+     * @link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/keyword-spacing.md
+     */
+    'keyword-spacing': 'off',
+    '@typescript-eslint/keyword-spacing': [
       'error',
       {
-        groups: [
-          [
-            '^vue', // vue放在首行
-            // 以字母(或数字或下划线)或“@”后面跟着字母开头的东西,通常为nodeModules引入
-            '^@?\\w',
-            '^@(/.*|$)', // 内部导入 "@/"
-            '^\\.\\.(?!/?$)', // 父级导入. 把 `..` 放在最后.
-            '^\\.\\./?$',
-            // 同级导入. 把同一个文件夹.放在最后
-            '^\\./(?=.*/)(?!/?$)',
-            '^\\.(?!/?$)',
-            '^\\./?$',
-            '^.+\\.?(css|less|scss)$', // 样式导入.
-            '^\\u0000', // 带有副作用导入，比如import 'a.css'这种.
-          ],
-        ],
+        before: true,
+        after: true,
+        overrides: {
+          return: { after: true },
+          throw: { after: true },
+          case: { after: true },
+        },
       },
     ],
+
+    /**
+     * 禁止出现空函数，普通函数（非 async/await/generator）、箭头函数、类上的方法除外
+     * @link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-function.md
+     */
+    'no-empty-function': 'off',
+    '@typescript-eslint/no-empty-function': [
+      'error',
+      {
+        allow: ['arrowFunctions', 'functions', 'methods'],
+      },
+    ],
+
+    /**
+     * 优先使用 interface 而不是 type 定义对象类型
+     * @link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-definitions.md
+     */
+    '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
+
+    'vue/attributes-order': 'error',
+    'vue/require-default-prop': 'off',
   },
   globals: { defineOptions: 'readonly', LabelValueOptions: true, ComponentRef: true },
 };

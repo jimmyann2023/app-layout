@@ -1,8 +1,9 @@
 <script lang="tsx">
-import type { CSSProperties, PropType, VNodeChild } from 'vue';
-import { computed, defineComponent, unref } from 'vue';
 import { InfoCircleOutlined } from '@ant-design/icons-vue';
 import { Tooltip } from 'ant-design-vue';
+import type { CSSProperties, PropType, VNodeChild } from 'vue';
+import { computed, defineComponent, unref } from 'vue';
+
 import { useDesign } from '@/hooks/web/useDesign';
 import { getPopupContainer } from '@/utils';
 import { getSlot } from '@/utils/helper/tsxHelper';

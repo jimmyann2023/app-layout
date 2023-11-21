@@ -1,4 +1,5 @@
 import { withInstall } from '@/utils';
+
 import basicArrow from './src/BasicArrow.vue';
 import basicHelp from './src/BasicHelp.vue';
 import basicTitle from './src/BasicTitle.vue';

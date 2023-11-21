@@ -1,5 +1,6 @@
-import { computed, defineComponent, unref } from 'vue';
 import { Divider } from 'ant-design-vue';
+import { computed, defineComponent, unref } from 'vue';
+
 import { AppDarkModeToggle } from '@/components/Application';
 import { BasicDrawer } from '@/components/Drawer/index';
 import { MenuTypeEnum, TriggerEnum } from '@/enums/menuEnum';
@@ -9,6 +10,7 @@ import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
 import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting';
 import { useI18n } from '@/hooks/web/useI18n';
+
 import {
   InputNumberItem,
   SelectItem,
