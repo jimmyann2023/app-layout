@@ -69,7 +69,7 @@ export default defineConfig(({ mode }) => {
         // Specify the icon folder to be cached
         iconDirs: [resolve(CWD, 'src/assets/icons')],
         // Specify symbolId format
-        symbolId: 'svg-icon-[dir]-[name]',
+        // symbolId: 'svg-icon-[dir]-[name]',
       }),
       Components({
         dts: 'types/components.d.ts',
