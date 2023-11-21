@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AAvatar: (typeof import('ant-design-vue/es'))['Avatar'];
+    ABreadcrumb: (typeof import('ant-design-vue/es'))['Breadcrumb'];
     AButton: (typeof import('ant-design-vue/es'))['Button'];
     AList: (typeof import('ant-design-vue/es'))['List'];
     AListItem: (typeof import('ant-design-vue/es'))['ListItem'];
@@ -19,6 +20,7 @@ declare module 'vue' {
     ATag: (typeof import('ant-design-vue/es'))['Tag'];
     ATypographyParagraph: (typeof import('ant-design-vue/es'))['TypographyParagraph'];
     BasicArrow: (typeof import('./../src/components/Basic/src/BasicArrow.vue'))['default'];
+    BasicButton: (typeof import('./../src/components/Button/src/BasicButton.vue'))['default'];
     BasicDrawer: (typeof import('./../src/components/Drawer/src/BasicDrawer.vue'))['default'];
     BasicHelp: (typeof import('./../src/components/Basic/src/BasicHelp.vue'))['default'];
     BasicMenu: (typeof import('./../src/components/Menu/src/BasicMenu.vue'))['default'];
@@ -46,6 +48,7 @@ declare module 'vue' {
     ModalWrapper: (typeof import('./../src/components/Modal/src/components/ModalWrapper.vue'))['default'];
     PageFooter: (typeof import('./../src/components/Page/src/PageFooter.vue'))['default'];
     PageWrapper: (typeof import('./../src/components/Page/src/PageWrapper.vue'))['default'];
+    PopConfirmButton: (typeof import('./../src/components/Button/src/PopConfirmButton.vue'))['default'];
     RouterLink: (typeof import('vue-router'))['RouterLink'];
     RouterView: (typeof import('vue-router'))['RouterView'];
     Scrollbar: (typeof import('./../src/components/Scrollbar/src/Scrollbar.vue'))['default'];
