@@ -1,5 +1,5 @@
 <template>
-  <div :class="[prefixCls, getLayoutContentMode]">
+  <div :class="[prefixCls, getLayoutContentMode]" v-loading="getOpenPageLoading && getPageLoading">
     <PageLayout />
   </div>
 </template>
@@ -9,6 +9,7 @@ import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { useDesign } from '@/hooks/web/useDesign';
 import PageLayout from '@/layouts/page/index.vue';
 import { useContentViewHeight } from './useContentViewHeight';
+import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting';
 
 export default defineComponent({
   name: 'LayoutContent',
@@ -17,12 +18,14 @@ export default defineComponent({
   },
   setup() {
     const prefixCls = useDesign('layout-content');
-    const { getLayoutContentMode } = useRootSetting();
-
+    const { getOpenPageLoading } = useTransitionSetting();
+    const { getLayoutContentMode, getPageLoading } = useRootSetting();
     useContentViewHeight();
     return {
       prefixCls,
+      getOpenPageLoading,
       getLayoutContentMode,
+      getPageLoading,
     };
   },
 });
