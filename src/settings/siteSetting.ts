@@ -6,3 +6,5 @@ export const DOC_URL = 'https://www.JDdoc.cn/';
 
 // site url
 export const SITE_URL = 'https://www.baidu.cn/';
+
+export const INTER_URL = 'https://beian.miit.gov.cn/#/Integrated/index';
