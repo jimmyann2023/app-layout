@@ -1,8 +1,11 @@
-import type { Ref } from 'vue';
-import { ref, unref, watch } from 'vue';
 import { useDebounceFn, useThrottleFn } from '@vueuse/core';
+import type { Ref } from 'vue';
+import { nextTick, onActivated, onMounted, ref, unref, watch } from 'vue';
+
+import { AnyFunction } from './typing';
 
 export type RemoveEventFn = () => void;
+
 export interface UseEventParams {
   el?: Element | Ref<Element | undefined> | Window | any;
   name: string;
@@ -55,4 +58,25 @@ export function useEventListener({
     };
   }
   return { removeEvent: remove };
+}
+
+/**
+ * 在 OnMounted 或者 OnActivated 时触发
+ * @param hook 任何函数（包括异步函数）
+ */
+export function onMountedOrActivated(hook: AnyFunction) {
+  let mounted: boolean;
+
+  onMounted(() => {
+    hook();
+    nextTick(() => {
+      mounted = true;
+    });
+  });
+
+  onActivated(() => {
+    if (mounted) {
+      hook();
+    }
+  });
 }

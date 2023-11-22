@@ -11,13 +11,13 @@
 
     <template #overlay>
       <Menu @click="handleMenuClick">
-        <MenuItem
+        <!-- <MenuItem
           v-if="getShowDoc"
           key="doc"
           :text="t('layout.header.dropdownItemDoc')"
           icon="ion:document-text-outline"
-        />
-        <MenuDivider v-if="getShowDoc" />
+        />  -->
+        <!-- <MenuDivider v-if="getShowDoc" /> -->
         <!-- <MenuItem
           v-if="getShowApi"
           key="api"
@@ -66,7 +66,7 @@ export default defineComponent({
     Dropdown,
     Menu,
     MenuItem: createAsyncComponent(() => import('./DropMenuItem.vue')),
-    MenuDivider: Menu.Divider,
+    // MenuDivider: Menu.Divider,
     // LockAction: createAsyncComponent(() => import('../lock/LockModal.vue')),
     // ChangeApi: createAsyncComponent(() => import('../ChangeApi/index.vue')),
   },

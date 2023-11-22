@@ -10,13 +10,18 @@ import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
 import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting';
 import { useI18n } from '@/hooks/web/useI18n';
+import {
+  APP_PRESET_COLOR_LIST,
+  HEADER_PRESET_BG_COLOR_LIST,
+  SIDE_BAR_BG_COLOR_LIST,
+} from '@/settings/designSetting';
 
 import {
   InputNumberItem,
   SelectItem,
-  // ThemeColorPicker,
   SettingFooter,
   SwitchItem,
+  ThemeColorPicker,
   TypePicker,
 } from './components';
 import {
@@ -29,12 +34,6 @@ import {
   topMenuAlignOptions,
 } from './enum';
 import { baseHandler } from './handler';
-
-// import {
-//   HEADER_PRESET_BG_COLOR_LIST,
-//   SIDE_BAR_BG_COLOR_LIST,
-//   APP_PRESET_COLOR_LIST,
-// } from '/@/settings/designSetting';
 
 const { t } = useI18n();
 
@@ -52,7 +51,7 @@ export default defineComponent({
       getGrayMode,
       getLockTime,
       getShowDarkModeToggle,
-      // getThemeColor,
+      getThemeColor,
     } = useRootSetting();
 
     const { getOpenPageLoading, getBasicTransition, getEnableTransition, getOpenNProgress } =
@@ -70,7 +69,7 @@ export default defineComponent({
       getTopMenuAlign,
       getAccordion,
       getMenuWidth,
-      // getMenuBgColor,
+      getMenuBgColor,
       getIsTopMenu,
       getSplit,
       getIsMixSidebar,
@@ -82,7 +81,7 @@ export default defineComponent({
     const {
       getShowHeader,
       getFixed: getHeaderFixed,
-      // getHeaderBgColor,
+      getHeaderBgColor,
       getShowSearch,
     } = useHeaderSetting();
 
@@ -111,35 +110,35 @@ export default defineComponent({
       );
     }
 
-    // function renderHeaderTheme() {
-    //   return (
-    //     <ThemeColorPicker
-    //       colorList={HEADER_PRESET_BG_COLOR_LIST}
-    //       def={unref(getHeaderBgColor)}
-    //       event={HandlerEnum.HEADER_THEME}
-    //     />
-    //   );
-    // }
+    function renderHeaderTheme() {
+      return (
+        <ThemeColorPicker
+          colorList={HEADER_PRESET_BG_COLOR_LIST}
+          def={unref(getHeaderBgColor)}
+          event={HandlerEnum.HEADER_THEME}
+        />
+      );
+    }
 
-    // function renderSiderTheme() {
-    //   return (
-    //     <ThemeColorPicker
-    //       colorList={SIDE_BAR_BG_COLOR_LIST}
-    //       def={unref(getMenuBgColor)}
-    //       event={HandlerEnum.MENU_THEME}
-    //     />
-    //   );
-    // }
+    function renderSiderTheme() {
+      return (
+        <ThemeColorPicker
+          colorList={SIDE_BAR_BG_COLOR_LIST}
+          def={unref(getMenuBgColor)}
+          event={HandlerEnum.MENU_THEME}
+        />
+      );
+    }
 
-    // function renderMainTheme() {
-    //   return (
-    //     <ThemeColorPicker
-    //       colorList={APP_PRESET_COLOR_LIST}
-    //       def={unref(getThemeColor)}
-    //       event={HandlerEnum.CHANGE_THEME_COLOR}
-    //     />
-    //   );
-    // }
+    function renderMainTheme() {
+      return (
+        <ThemeColorPicker
+          colorList={APP_PRESET_COLOR_LIST}
+          def={unref(getThemeColor)}
+          event={HandlerEnum.CHANGE_THEME_COLOR}
+        />
+      );
+    }
 
     /**
      * @description:
@@ -411,12 +410,12 @@ export default defineComponent({
         {unref(getShowDarkModeToggle) && <AppDarkModeToggle class="mx-auto" />}
         <Divider>{() => t('layout.setting.navMode')}</Divider>
         {renderSidebar()}
-        {/* <Divider>{() => t('layout.setting.sysTheme')}</Divider>
+        <Divider>{() => t('layout.setting.sysTheme')}</Divider>
         {renderMainTheme()}
         <Divider>{() => t('layout.setting.headerTheme')}</Divider>
         {renderHeaderTheme()}
         <Divider>{() => t('layout.setting.sidebarTheme')}</Divider>
-        {renderSiderTheme()} */}
+        {renderSiderTheme()}
         <Divider>{() => t('layout.setting.interfaceFunction')}</Divider>
         {renderFeatures()}
         <Divider>{() => t('layout.setting.interfaceDisplay')}</Divider>

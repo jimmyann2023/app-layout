@@ -71,9 +71,9 @@ export default defineComponent({
     a {
       color: rgb(89 142 255 / 90%);
 
-      &:hover {
-        // color: @hover-color;
-      }
+      // &:hover {
+      //   color: @hover-color;
+      // }
     }
   }
 }

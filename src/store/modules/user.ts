@@ -1,6 +1,7 @@
+import { defineStore } from 'pinia';
 import { h } from 'vue';
 import { RouteRecordRaw } from 'vue-router';
-import { defineStore } from 'pinia';
+
 import { GetUserInfoModel, LoginParams } from '@/api/sys/model/userModel';
 import { doLogout, loginApi } from '@/api/sys/user';
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum';
@@ -14,7 +15,6 @@ import { store } from '@/store';
 import { usePermissionStore } from '@/store/modules/permission';
 import { getAuthCache, setAuthCache } from '@/utils/auth';
 import { isArray } from '@/utils/is';
-
 import type { UserInfo } from '#/store';
 
 interface UserState {
@@ -137,11 +137,11 @@ export const useUserStore = defineStore({
       if (!this.getToken) return null;
       // const userInfo = await getUserInfo();
       const userInfo = {
-        userId: 'id-001',
+        userId: '001',
         username: 'admin',
         realName: 'Toms',
-        avatar: 'xxx',
-        roles: [{ roleName: '管理员', value: 'ooo' }],
+        avatar: '',
+        roles: [{ roleName: 'super admin', value: 'admim' }],
       };
       const { roles = [] } = userInfo;
       if (isArray(roles)) {

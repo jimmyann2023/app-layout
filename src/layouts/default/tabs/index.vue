@@ -101,8 +101,6 @@ export default defineComponent({
       if (name === REDIRECT_NAME || !route || !userStore.getToken) {
         return;
       }
-      // TODO: 正式登录要解开 token 判断
-
       const { path, fullPath, meta = {} } = route;
       const { currentActiveMenu, hideTab } = meta as RouteMeta;
       const isHide = !hideTab ? null : currentActiveMenu;
