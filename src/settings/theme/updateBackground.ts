@@ -50,6 +50,7 @@ export function updateHeaderBgColor(color?: string) {
  * @param color  bg color
  */
 export function updateSidebarBgColor(color?: string) {
+  console.log('_color', color);
   const appStore = useAppStore();
 
   // if (!isHexColor(color)) return;

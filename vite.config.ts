@@ -58,7 +58,13 @@ export default defineConfig(({ mode }) => {
       ],
     },
     plugins: [
-      vue(),
+      vue({
+        template: {
+          compilerOptions: {
+            isCustomElement: (tag) => /^micro-app/.test(tag),
+          },
+        },
+      }),
       vueJsx(),
       UnoCSS({
         presets: [presetUno(), presetTypography()],
@@ -71,7 +77,13 @@ export default defineConfig(({ mode }) => {
         // Specify the icon folder to be cached
         iconDirs: [resolve(CWD, 'src/assets/icons')],
         // Specify symbolId format
-        // symbolId: 'svg-icon-[dir]-[name]',
+        symbolId: 'icon-[dir]-[name]',
+
+        /**
+         * custom dom id
+         * @default: __svg__icons__dom__
+         */
+        customDomId: '__svg__icons__dom__',
       }),
       Components({
         dts: 'types/components.d.ts',

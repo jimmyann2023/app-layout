@@ -18,9 +18,11 @@
   </Menu>
 </template>
 <script lang="ts" setup>
+import type { MenuMode } from 'ant-design-vue/lib/menu/src/interface';
 import { computed, PropType, reactive, ref, toRefs, unref, watch } from 'vue';
 import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
 
+import { MenuModeEnum } from '@/enums/menuEnum';
 import { useAttrs } from '@/hooks/useAttrs';
 import { useDesign } from '@/hooks/web/useDesign';
 import { REDIRECT_NAME } from '@/router/constant';
@@ -30,11 +32,9 @@ import { openWindow } from '@/utils';
 import { isFunction, isHttpUrl } from '@/utils/is';
 import { propTypes } from '@/utils/propTypes';
 
-import Menu from './components/Menu.vue';
 import SimpleSubMenu from './SimpleSubMenu.vue';
 import { MenuState } from './types';
 import { useOpenKeys } from './useOpenKey';
-
 defineOptions({ name: 'SimpleMenu', inheritAttrs: false });
 
 const props = defineProps({
@@ -51,7 +51,12 @@ const props = defineProps({
     type: Function as PropType<(key: string) => Promise<boolean>>,
   },
   isSplitMenu: propTypes.bool,
+  mode: {
+    type: String as PropType<MenuMode>,
+    default: MenuModeEnum.INLINE,
+  },
 });
+console.log('propsT', props);
 
 const emit = defineEmits(['menuClick']);
 
@@ -77,8 +82,10 @@ const { setOpenKeys, getOpenKeys } = useOpenKeys(
   mixSider as any,
   collapse as any,
 );
+console.log('getOpenKeys', getOpenKeys);
 
 const getBindValues = computed(() => ({ ...attrs, ...props }));
+console.log('getBindValues', getBindValues);
 
 watch(
   () => props.collapse,
@@ -128,6 +135,8 @@ async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {
 }
 
 async function handleSelect(key: string) {
+  console.log('key', key);
+  console.log('menuState', menuState);
   if (isHttpUrl(key)) {
     openWindow(key);
     return;

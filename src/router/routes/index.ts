@@ -7,7 +7,7 @@ import { mainOutRoutes } from './mainOut';
 
 // import.meta.glob() 直接引入所有的模块 Vite 独有的功能
 const modules = import.meta.glob('./modules/**/*.ts', { eager: true });
-console.log('modules', modules);
+
 const routeModuleList: AppRouteModule[] = [];
 
 // 加入到路由集合中
@@ -18,7 +18,7 @@ Object.keys(modules).forEach((key) => {
 });
 
 export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...routeModuleList];
-
+console.log('asyncRoutes', asyncRoutes);
 // 根路由
 export const RootRoute: AppRouteRecordRaw = {
   path: '/',

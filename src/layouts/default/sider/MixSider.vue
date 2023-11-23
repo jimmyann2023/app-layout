@@ -68,6 +68,7 @@
         />
       </div>
       <ScrollContainer :class="`${prefixCls}-menu-list__content`">
+        <!------- TODO: 这里需要单独修改 多个菜单可以同时打开 antd menu mode='inline'模式 ------>
         <SimpleMenu
           :items="childrenMenus"
           :theme="getMenuTheme"
@@ -436,6 +437,7 @@ export default defineComponent({
     }
     .@{prefix-cls}-menu-list {
       background-color: @sider-dark-bg-color;
+      // TODO: background-color: #fff;
 
       &__title {
         border-bottom: none;

@@ -44,7 +44,9 @@ const props = defineProps({
 const elRef = ref(null);
 
 const isSvgIcon = computed(() => props.icon?.endsWith(SVG_END_WITH_FLAG));
+
 const getSvgIcon = computed(() => props.icon.replace(SVG_END_WITH_FLAG, ''));
+
 const getIconRef = computed(() => `${props.prefix ? props.prefix + ':' : ''}${props.icon}`);
 
 const update = async () => {

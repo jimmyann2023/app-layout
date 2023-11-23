@@ -7,6 +7,7 @@
     <div>analysis</div>
 
     <SvgIcon name="test" size="32" />
+    <SvgIcon name="supplyChain" size="32" />
   </PageWrapper>
 </template>
 <script lang="ts" setup>

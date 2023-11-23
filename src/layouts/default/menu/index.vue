@@ -138,10 +138,16 @@ export default defineComponent({
 
     function renderMenu() {
       const { menus, ...menuProps } = unref(getCommonProps);
+      console.log(!props.isHorizontal ? 'SimpleMenu' : 'BasicMenu');
       // console.log(menus);
       if (!menus || !menus.length) return null;
       return !props.isHorizontal ? (
-        <SimpleMenu {...menuProps} isSplitMenu={unref(getSplit)} items={menus} />
+        <SimpleMenu
+          {...menuProps}
+          mode={unref(getComputedMenuMode as any)}
+          isSplitMenu={unref(getSplit)}
+          items={menus}
+        />
       ) : (
         <BasicMenu
           {...(menuProps as any)}

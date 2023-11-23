@@ -38,7 +38,6 @@ import LayoutTrigger from '@/layouts/default/trigger/index.vue';
 import LayoutMenu from '../menu/index.vue';
 import DragBar from './DragBar.vue';
 import { useDragLine, useSiderEvent, useTrigger } from './useLayoutSider';
-
 defineOptions({ name: 'LayoutSideBar' });
 
 const dragBarRef = ref(null);
@@ -68,6 +67,7 @@ const { getCollapsedWidth, onBreakpointChange } = useSiderEvent();
 const getMode = computed(() => {
   return unref(getSplit) ? MenuModeEnum.INLINE : null;
 });
+console.log('getMode', getMode);
 
 const getSplitType = computed(() => {
   return unref(getSplit) ? MenuSplitTyeEnum.LEFT : MenuSplitTyeEnum.NONE;

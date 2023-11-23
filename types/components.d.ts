@@ -32,9 +32,13 @@ declare module 'vue' {
     CollapseHeader: (typeof import('./../src/components/Container/src/collapse/CollapseHeader.vue'))['default'];
     CollapseTransition: (typeof import('./../src/components/Transition/src/CollapseTransition.vue'))['default'];
     ContextMenu: (typeof import('./../src/components/ContextMenu/src/ContextMenu.vue'))['default'];
+    DMenu: (typeof import('./../src/components/DMenu/src/DMenu.vue'))['default'];
+    DMenuItem: (typeof import('./../src/components/DMenu/src/components/DMenuItem.vue'))['default'];
+    DMenuItemContent: (typeof import('./../src/components/DMenu/src/components/DMenuItemContent.vue'))['default'];
     DrawerFooter: (typeof import('./../src/components/Drawer/src/components/DrawerFooter.vue'))['default'];
     DrawerHeader: (typeof import('./../src/components/Drawer/src/components/DrawerHeader.vue'))['default'];
     Dropdown: (typeof import('./../src/components/Dropdown/src/Dropdown.vue'))['default'];
+    DSubMenuItem: (typeof import('./../src/components/DMenu/src/components/DSubMenuItem.vue'))['default'];
     Icon: (typeof import('./../src/components/Icon/Icon.vue'))['default'];
     IconPicker: (typeof import('./../src/components/Icon/src/IconPicker.vue'))['default'];
     Loading: (typeof import('./../src/components/Loading/src/Loading.vue'))['default'];

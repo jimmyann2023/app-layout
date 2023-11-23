@@ -1,0 +1,68 @@
+{
+  "supplychian": "供应链",
+
+  "purchasingCenter": {
+    "purchasingCenter": "采购中心",
+    "order": {
+      "order": "订单管理",
+      "add": "新增订单",
+      "draf": "草稿箱",
+      "list": "订单列表",
+      "confim": "确认申请关闭"
+    },
+    "ReceiptGoods": {
+      "Goods": "收货管理",
+      "list": "收货列表",
+      "AwaitingQualityInspection": "待品检",
+      "QualityInspectionRecords": "品检记录",
+      "ToBeStockedList": "待入库里列表"
+    },
+    "ReturnGoods": {
+      "Goods": "退货管理",
+      "add": "新增退货单",
+      "records": "退货记录"
+    },
+    "supplier": {
+      "supplier": "供应商管理",
+      "IsMy": "我的供应商",
+      "list": "供应商列表"
+    },
+    "Reconciliation": {
+      "Reconciliation": "对账管理",
+      "settings": "设置账期",
+      "list": "对账单列表"
+    },
+    "settings": {
+      "settings": "设置",
+      "TermsTransaction": "交易条款",
+      "OrderProcess": "订单流程"
+    }
+  },
+  "sellingcentre": "销售中心",
+  "selling": {
+    "order": "订单中心",
+    "list": "订单列表",
+    "applyClosed": "申请关闭列表",
+    "shipGoods": {
+      "shipGoods": "发货管理",
+      "toBeDeliveredList": "待发货列表",
+      "toBeDeliveredRecords": "发货记录",
+      "DemandSideAQ": "需方品检记录",
+      "DemandSideWH": "需方入库记录"
+    },
+    "restockGoods": {
+      "restockGoods": "补货管理",
+      "returnList": "需方退货单",
+      "closedRecords": "需方入库关闭记录",
+      "restockRecords": "补货记录列表"
+    },
+    "Reconciliation": {
+      "Reconciliation": "对账管理",
+      "list": "对账单列表"
+    },
+    "customer": {
+      "customer": "客户管理",
+      "IsMy": "我的客户"
+    }
+  }
+}
