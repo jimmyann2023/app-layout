@@ -13,7 +13,7 @@ import { useI18n } from '@/hooks/web/useI18n';
 import {
   APP_PRESET_COLOR_LIST,
   HEADER_PRESET_BG_COLOR_LIST,
-  SIDE_BAR_BG_COLOR_LIST,
+  // SIDE_BAR_BG_COLOR_LIST,
 } from '@/settings/designSetting';
 
 import {
@@ -123,7 +123,8 @@ export default defineComponent({
     function renderSiderTheme() {
       return (
         <ThemeColorPicker
-          colorList={SIDE_BAR_BG_COLOR_LIST}
+          // colorList={SIDE_BAR_BG_COLOR_LIST}
+          colorList={HEADER_PRESET_BG_COLOR_LIST}
           def={unref(getMenuBgColor)}
           event={HandlerEnum.MENU_THEME}
         />

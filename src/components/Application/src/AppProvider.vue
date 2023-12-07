@@ -33,7 +33,7 @@ export default defineComponent({
       }
       handleRestoreState();
     });
-
+    // toRefs 是把所有的props 结构出来变成响应式
     const { prefixCls } = toRefs(props);
 
     // Inject variables into the global

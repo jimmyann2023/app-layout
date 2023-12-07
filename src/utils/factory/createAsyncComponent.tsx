@@ -38,16 +38,25 @@ export function createAsyncComponent<
 >(loader: AsyncComponentLoader<T>, options: Options = {}) {
   const { size = 'small', delay = 100, timeout = 30000, loading = false, retry = true } = options;
   return defineAsyncComponent({
+    //加载函数
     loader,
+
+    // 加载异步组件时使用的组件
     loadingComponent: loading ? <Spin spinning={true} size={size} /> : undefined,
-    // The error component will be displayed if a timeout is
-    // provided and exceeded. Default: Infinity.
-    // TODO
-    timeout,
+
+    // 加载失败后展示的组件
     // errorComponent
+
     // Defining if component is suspensible. Default: true.
     // suspensible: false,
+
+    // 展示加载组件前的延迟时间，默认为 100ms
     delay,
+
+    // 如果提供了一个 timeout 时间限制，并超时了
+    // 也会显示这里配置的报错组件，默认值是：Infinity
+    timeout,
+
     /**
      *
      * @param {*} error Error message object

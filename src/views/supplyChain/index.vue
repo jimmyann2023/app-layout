@@ -15,7 +15,7 @@ import { config } from '@/settings/childAppSetting';
 const go = useGo();
 // FIXME::  目前所有 micro-app 的 child appName 需要自己定义
 const appName = 'appname-supplyChain';
-const url = `${config.supplyChain}/child/supplyChain/`;
+const url = `${config.supplyChain}/supplyChain/`;
 console.log('children-url', url);
 
 // const router = useRouter();

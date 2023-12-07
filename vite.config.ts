@@ -78,12 +78,6 @@ export default defineConfig(({ mode }) => {
         iconDirs: [resolve(CWD, 'src/assets/icons')],
         // Specify symbolId format
         symbolId: 'icon-[dir]-[name]',
-
-        /**
-         * custom dom id
-         * @default: __svg__icons__dom__
-         */
-        customDomId: '__svg__icons__dom__',
       }),
       Components({
         dts: 'types/components.d.ts',
@@ -131,7 +125,6 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-
     esbuild: {
       pure: VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],
       supported: {

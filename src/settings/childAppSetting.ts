@@ -1,6 +1,6 @@
 // 开发环境地址
 const config: Record<string, string> = {
-  vite: 'http://localhost:4007',
+  vite: 'http://localhost:5001',
   vue2: 'http://localhost:4008',
   vue3: 'http://localhost:4009',
 
@@ -14,7 +14,9 @@ const config: Record<string, string> = {
   mouldBook: 'http://localhost:5010', // 模具台账 mould book
   deviceBook: 'http://localhost:5011', // 设备台账 device book
   outsourcing: 'http://localhost:5005', // 外协中心 Outsourcing center
-  supplyChain: 'http://localhost:5001', // 供应链 supply chain
+  // supplyChain: 'http://localhost:5011', // 供应链 supply chain
+  supplyChain: 'http://localhost:4009', // 供应链 supply chain
+
   productionPlan: 'http://localhost:5012', // 生产排程 production plan
   executionCraft: 'http://localhost:5004', // 工艺执行 execution Craft
   accountManagement: 'http://localhost:5013', // 账户管理 account managemen

@@ -16,8 +16,12 @@ Object.keys(modules).forEach((key) => {
   const modList = Array.isArray(mod) ? [...mod] : [mod];
   routeModuleList.push(...modList);
 });
+// TODO: 暂时排除 微服务的 vite
+const excludeRoute = routeModuleList.filter((item) => {
+  return item.name !== 'vite';
+});
 
-export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...routeModuleList];
+export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...excludeRoute];
 console.log('asyncRoutes', asyncRoutes);
 // 根路由
 export const RootRoute: AppRouteRecordRaw = {
