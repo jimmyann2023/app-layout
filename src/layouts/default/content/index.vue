@@ -22,6 +22,7 @@ export default defineComponent({
     const prefixCls = useDesign('layout-content');
     const { getOpenPageLoading } = useTransitionSetting();
     const { getLayoutContentMode, getPageLoading } = useRootSetting();
+
     useContentViewHeight();
     return {
       prefixCls,

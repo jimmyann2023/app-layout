@@ -18,8 +18,8 @@ import App from './App.vue';
 import { initAppConfigStore } from './settings/initAppConfig';
 
 microApp.start({
-  'disable-memory-router': true, // 默认值false
-  // 'disable-patch-request': true, // 关闭对子应用请求的拦截
+  'disable-memory-router': true, // 关闭虚拟路由系统
+  'disable-patch-request': true, // 关闭对子应用请求的拦截
 });
 
 async function bootstrap() {

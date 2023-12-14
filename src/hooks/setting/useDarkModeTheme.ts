@@ -1,5 +1,6 @@
-import { computed } from 'vue';
 import { theme } from 'ant-design-vue';
+import { computed } from 'vue';
+
 import { ThemeEnum } from '@/enums/appEnum';
 import { useRootSetting } from '@/hooks/setting/useRootSetting';
 

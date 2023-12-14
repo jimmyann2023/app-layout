@@ -1,4 +1,5 @@
 import { computed, ComputedRef, ref, unref } from 'vue';
+
 import { screenEnum, screenMap, sizeEnum } from '@/enums/breakpointEnum';
 import { useEventListener } from '@/hooks/event/useEventListener';
 
@@ -73,6 +74,7 @@ export function createBreakpointListen(fn?: (opt: CreateCallbackParams) => void)
   globalRealWidthRef = computed((): number => unref(realWidthRef));
 
   function resizeFn() {
+    console.log(globalScreenRef, globalRealWidthRef, realWidthRef);
     fn?.({
       screen: globalScreenRef,
       width: globalWidthRef,

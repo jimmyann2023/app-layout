@@ -51,6 +51,7 @@ export default defineComponent({
     const getIsShowPlaceholderDom = computed(() => {
       return unref(getFixed) || unref(getShowFullHeaderRef);
     });
+    console.log('getIsShowPlaceholderDom', getIsShowPlaceholderDom);
 
     const getWrapStyle = computed((): CSSProperties => {
       const style: CSSProperties = {};
@@ -62,7 +63,7 @@ export default defineComponent({
       }
       return style;
     });
-
+    console.log('getWrapStyle', getWrapStyle);
     const getIsFixed = computed(() => {
       return unref(getFixed) || unref(getShowFullHeaderRef);
     });
@@ -88,6 +89,7 @@ export default defineComponent({
         height: `${height}px`,
       };
     });
+    console.log('getPlaceholderDomStyle', getPlaceholderDomStyle);
 
     const getClass = computed(() => {
       return [

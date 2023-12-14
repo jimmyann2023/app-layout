@@ -1,8 +1,8 @@
 // 开发环境地址
 const config: Record<string, string> = {
-  vite: 'http://localhost:5001',
+  vite: 'http://localhost:4009',
   vue2: 'http://localhost:4008',
-  vue3: 'http://localhost:4009',
+  vue3: 'http://localhost:4010',
 
   PM: 'http://localhost:5002', // 项目管理 project management
   CM: 'http://localhost:5003', // 工艺管理 craft management

@@ -45,7 +45,6 @@ export default defineComponent({
     const { getShowFullHeaderRef } = useHeaderSetting();
     console.log('getShowFullHeaderRef', getShowFullHeaderRef);
     const { getShowSidebar, getIsMixSidebar, getShowMenu } = useMenuSetting();
-
     const { getAutoCollapse } = useMultipleTabSetting();
 
     const layoutClass = computed(() => {

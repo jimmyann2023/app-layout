@@ -8,7 +8,6 @@ export interface AppProviderContextProps {
 }
 
 const key: InjectionKey<AppProviderContextProps> = Symbol();
-
 export function createAppProviderContext(context: AppProviderContextProps) {
   return createContext<AppProviderContextProps>(context, key);
 }
