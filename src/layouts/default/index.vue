@@ -12,9 +12,9 @@
     </Layout>
   </Layout>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import { Layout } from 'ant-design-vue';
-import { computed, defineComponent, unref } from 'vue';
+import { computed, unref } from 'vue';
 
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
@@ -28,47 +28,28 @@ import LayoutHeader from './header/index.vue';
 import LayoutMultipleHeader from './header/MultipleHeader.vue';
 import LayoutSideBar from './sider/index.vue';
 
-export default defineComponent({
-  name: 'DefaultLayout',
-  components: {
-    LayoutFeatures: createAsyncComponent(() => import('@/layouts/default/feature/index.vue')),
-    LayoutFooter: createAsyncComponent(() => import('@/layouts/default/footer/index.vue')),
-    Layout,
-    LayoutSideBar,
-    LayoutHeader,
-    LayoutContent,
-    LayoutMultipleHeader,
-  },
-  setup() {
-    const { prefixCls } = useDesign('default-layout');
-    const { getIsMobile } = useAppInject();
-    const { getShowFullHeaderRef } = useHeaderSetting();
-    console.log('getShowFullHeaderRef', getShowFullHeaderRef);
-    const { getShowSidebar, getIsMixSidebar, getShowMenu } = useMenuSetting();
-    const { getAutoCollapse } = useMultipleTabSetting();
+defineOptions({ name: 'DefaultLayout' });
 
-    const layoutClass = computed(() => {
-      let cls: string[] = ['ant-layout'];
-      if (unref(getIsMixSidebar) || unref(getShowMenu)) {
-        cls.push('ant-layout-has-sider');
-      }
+const LayoutFeatures = createAsyncComponent(() => import('@/layouts/default/feature/index.vue'));
+const LayoutFooter = createAsyncComponent(() => import('@/layouts/default/footer/index.vue'));
 
-      if (!unref(getShowMenu) && unref(getAutoCollapse)) {
-        cls.push('ant-layout-auto-collapse-tabs');
-      }
+const { prefixCls } = useDesign('default-layout');
+const { getIsMobile } = useAppInject();
+const { getShowFullHeaderRef } = useHeaderSetting();
+const { getShowSidebar, getIsMixSidebar, getShowMenu } = useMenuSetting();
+const { getAutoCollapse } = useMultipleTabSetting();
 
-      return cls;
-    });
-    return {
-      prefixCls,
-      getIsMobile,
-      layoutClass,
-      getShowFullHeaderRef,
-      getShowSidebar,
-      getIsMixSidebar,
-      getShowMenu,
-    };
-  },
+const layoutClass = computed(() => {
+  let cls: string[] = ['ant-layout'];
+  if (unref(getIsMixSidebar) || unref(getShowMenu)) {
+    cls.push('ant-layout-has-sider');
+  }
+
+  if (!unref(getShowMenu) && unref(getAutoCollapse)) {
+    cls.push('ant-layout-auto-collapse-tabs');
+  }
+
+  return cls;
 });
 </script>
 <style lang="less">
@@ -88,6 +69,7 @@ export default defineComponent({
   &-main {
     width: 100%;
     margin-left: 1px;
+    background: #f7f8fa;
   }
 }
 

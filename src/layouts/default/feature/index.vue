@@ -1,6 +1,16 @@
-<script lang="ts">
+<template>
+  <!-- <LayoutLockPage /> -->
+  <BackTop v-if="getUseOpenBackTop" :target="getTarget" />
+  <SettingDrawer
+    v-if="getIsFixedSettingDrawer && (!getShowMultipleTab || getFullContent)"
+    :class="prefixCls"
+  />
+  <!-- <SessionTimeoutLogin v-if="getIsSessionTimeout" /> -->
+</template>
+
+<script lang="ts" setup>
 import { BackTop } from 'ant-design-vue';
-import { computed, defineComponent, unref } from 'vue';
+import { computed, unref } from 'vue';
 
 import { SettingButtonPositionEnum } from '@/enums/appEnum';
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
@@ -11,59 +21,36 @@ import { useUserStoreWithOut } from '@/store/modules/user';
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
 // import SessionTimeoutLogin from '@/views/sys/login/SessionTimeoutLogin.vue';
 
-export default defineComponent({
-  name: 'LayoutFeatures',
-  components: {
-    BackTop,
-    // LayoutLockPage: createAsyncComponent(() => import('@/views/sys/lock/index.vue')),
-    SettingDrawer: createAsyncComponent(() => import('@/layouts/default/setting/index.vue')),
-    // SessionTimeoutLogin,
-  },
-  setup() {
-    const { getUseOpenBackTop, getShowSettingButton, getSettingButtonPosition, getFullContent } =
-      useRootSetting();
-    const userStore = useUserStoreWithOut();
-    const { prefixCls } = useDesign('setting-drawer-feature');
-    const { getShowHeader } = useHeaderSetting();
+defineOptions({ name: 'LayoutFeatures' });
 
-    const getIsSessionTimeout = computed(() => userStore.getSessionTimeout);
+// const LayoutLockPage= createAsyncComponent(() => import('@/views/sys/lock/index.vue')),
+const SettingDrawer = createAsyncComponent(() => import('@/layouts/default/setting/index.vue'));
 
-    const getIsFixedSettingDrawer = computed(() => {
-      if (!unref(getShowSettingButton)) {
-        return false;
-      }
-      const settingButtonPosition = unref(getSettingButtonPosition);
+const getTarget = () => document.body;
 
-      if (settingButtonPosition === SettingButtonPositionEnum.AUTO) {
-        return !unref(getShowHeader) || unref(getFullContent);
-      }
-      return settingButtonPosition === SettingButtonPositionEnum.FIXED;
-    });
+const { getUseOpenBackTop, getShowSettingButton, getSettingButtonPosition, getFullContent } =
+  useRootSetting();
+const userStore = useUserStoreWithOut();
+const { prefixCls } = useDesign('setting-drawer-feature');
+const { getShowHeader } = useHeaderSetting();
 
-    const { getShowMultipleTab } = useMultipleTabSetting();
+const getIsSessionTimeout = computed(() => userStore.getSessionTimeout);
+console.log(getIsSessionTimeout);
 
-    return {
-      getTarget: () => document.body,
-      getUseOpenBackTop,
-      getIsFixedSettingDrawer,
-      prefixCls,
-      getIsSessionTimeout,
-      getShowMultipleTab,
-      getFullContent,
-    };
-  },
+const getIsFixedSettingDrawer = computed(() => {
+  if (!unref(getShowSettingButton)) {
+    return false;
+  }
+  const settingButtonPosition = unref(getSettingButtonPosition);
+
+  if (settingButtonPosition === SettingButtonPositionEnum.AUTO) {
+    return !unref(getShowHeader) || unref(getFullContent);
+  }
+  return settingButtonPosition === SettingButtonPositionEnum.FIXED;
 });
-</script>
 
-<template>
-  <!-- <LayoutLockPage /> -->
-  <BackTop v-if="getUseOpenBackTop" :target="getTarget" />
-  <SettingDrawer
-    v-if="getIsFixedSettingDrawer && (!getShowMultipleTab || getFullContent)"
-    :class="prefixCls"
-  />
-  <!-- <SessionTimeoutLogin v-if="getIsSessionTimeout" /> -->
-</template>
+const { getShowMultipleTab } = useMultipleTabSetting();
+</script>
 
 <style lang="less">
 @prefix-cls: ~'@{namespace}-setting-drawer-feature';

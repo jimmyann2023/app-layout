@@ -9,8 +9,8 @@
     <MultipleTabs v-if="getShowTabs" :key="tabStore.getLastDragEndIndex" />
   </div>
 </template>
-<script lang="ts">
-import { computed, CSSProperties, defineComponent, unref } from 'vue';
+<script lang="ts" setup>
+import { computed, CSSProperties, unref } from 'vue';
 
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
@@ -27,90 +27,74 @@ import LayoutHeader from './index.vue';
 const HEADER_HEIGHT = 48;
 
 const TABS_HEIGHT = 32;
-export default defineComponent({
-  name: 'LayoutMultipleHeader',
-  components: { LayoutHeader, MultipleTabs },
-  setup() {
-    const { setHeaderHeight } = useLayoutHeight();
-    const tabStore = useMultipleTabStore();
-    const { prefixCls } = useDesign('layout-multiple-header');
 
-    const { getCalcContentWidth, getSplit, getShowMenu } = useMenuSetting();
-    const { getIsMobile } = useAppInject();
-    const { getFixed, getShowInsetHeaderRef, getShowFullHeaderRef, getHeaderTheme, getShowHeader } =
-      useHeaderSetting();
-    console.log('getShowInsetHeaderRef', getShowInsetHeaderRef);
-    const { getFullContent } = useFullContent();
+defineOptions({ name: 'LayoutMultipleHeader' });
 
-    const { getShowMultipleTab, getAutoCollapse } = useMultipleTabSetting();
+const { setHeaderHeight } = useLayoutHeight();
+const tabStore = useMultipleTabStore();
+const { prefixCls } = useDesign('layout-multiple-header');
 
-    const getShowTabs = computed(() => {
-      return unref(getShowMultipleTab) && !unref(getFullContent);
-    });
+const { getCalcContentWidth, getSplit, getShowMenu } = useMenuSetting();
+const { getIsMobile } = useAppInject();
+const { getFixed, getShowInsetHeaderRef, getShowFullHeaderRef, getHeaderTheme, getShowHeader } =
+  useHeaderSetting();
 
-    const getIsShowPlaceholderDom = computed(() => {
-      return unref(getFixed) || unref(getShowFullHeaderRef);
-    });
-    console.log('getIsShowPlaceholderDom', getIsShowPlaceholderDom);
+const { getFullContent } = useFullContent();
 
-    const getWrapStyle = computed((): CSSProperties => {
-      const style: CSSProperties = {};
-      if (unref(getFixed)) {
-        style.width = unref(getIsMobile) ? '100%' : unref(getCalcContentWidth);
-      }
-      if (unref(getShowFullHeaderRef)) {
-        style.top = `${HEADER_HEIGHT}px`;
-      }
-      return style;
-    });
-    console.log('getWrapStyle', getWrapStyle);
-    const getIsFixed = computed(() => {
-      return unref(getFixed) || unref(getShowFullHeaderRef);
-    });
+const { getShowMultipleTab, getAutoCollapse } = useMultipleTabSetting();
 
-    const getIsUnFold = computed(() => !unref(getShowMenu) && !unref(getShowHeader));
+const getShowTabs = computed(() => {
+  return unref(getShowMultipleTab) && !unref(getFullContent);
+});
 
-    const getPlaceholderDomStyle = computed((): CSSProperties => {
-      let height = 0;
-      if (!(unref(getAutoCollapse) && unref(getIsUnFold))) {
-        if (
-          (unref(getShowFullHeaderRef) || !unref(getSplit)) &&
-          unref(getShowHeader) &&
-          !unref(getFullContent)
-        ) {
-          height += HEADER_HEIGHT;
-        }
-        if (unref(getShowMultipleTab) && !unref(getFullContent)) {
-          height += TABS_HEIGHT;
-        }
-        setHeaderHeight(height);
-      }
-      return {
-        height: `${height}px`,
-      };
-    });
-    console.log('getPlaceholderDomStyle', getPlaceholderDomStyle);
+const getIsShowPlaceholderDom = computed(() => {
+  return unref(getFixed) || unref(getShowFullHeaderRef);
+});
 
-    const getClass = computed(() => {
-      return [
-        prefixCls,
-        `${prefixCls}--${unref(getHeaderTheme)}`,
-        { [`${prefixCls}--fixed`]: unref(getIsFixed) },
-      ];
-    });
+const getWrapStyle = computed((): CSSProperties => {
+  const style: CSSProperties = {};
+  if (unref(getFixed)) {
+    style.width = unref(getIsMobile) ? '100%' : unref(getCalcContentWidth);
+  }
+  if (unref(getShowFullHeaderRef)) {
+    style.top = `${HEADER_HEIGHT}px`;
+  }
+  return style;
+});
 
-    return {
-      getClass,
-      prefixCls,
-      getPlaceholderDomStyle,
-      getIsFixed,
-      getWrapStyle,
-      getIsShowPlaceholderDom,
-      getShowTabs,
-      getShowInsetHeaderRef,
-      tabStore,
-    };
-  },
+const getIsFixed = computed(() => {
+  return unref(getFixed) || unref(getShowFullHeaderRef);
+});
+
+const getIsUnFold = computed(() => !unref(getShowMenu) && !unref(getShowHeader));
+
+const getPlaceholderDomStyle = computed((): CSSProperties => {
+  let height = 0;
+  if (!(unref(getAutoCollapse) && unref(getIsUnFold))) {
+    if (
+      (unref(getShowFullHeaderRef) || !unref(getSplit)) &&
+      unref(getShowHeader) &&
+      !unref(getFullContent)
+    ) {
+      height += HEADER_HEIGHT;
+    }
+    if (unref(getShowMultipleTab) && !unref(getFullContent)) {
+      height += TABS_HEIGHT;
+    }
+    setHeaderHeight(height);
+  }
+  return {
+    height: `${height}px`,
+  };
+});
+console.log('getPlaceholderDomStyle', getPlaceholderDomStyle);
+
+const getClass = computed(() => {
+  return [
+    prefixCls,
+    `${prefixCls}--${unref(getHeaderTheme)}`,
+    { [`${prefixCls}--fixed`]: unref(getIsFixed) },
+  ];
 });
 </script>
 <style lang="less" scoped>

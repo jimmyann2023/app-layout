@@ -120,7 +120,7 @@ export const routerTransitionOptions = [
   };
 });
 
-export const menuTypeList = [
+export const menuTypeListEnum = [
   {
     title: t('layout.setting.menuTypeSidebar'),
     mode: MenuModeEnum.INLINE,

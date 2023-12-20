@@ -16,9 +16,9 @@
     </a-button>
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import { CopyOutlined, RedoOutlined } from '@ant-design/icons-vue';
-import { defineComponent, unref } from 'vue';
+import { unref } from 'vue';
 
 import { useDesign } from '@/hooks/web/useDesign';
 import { useI18n } from '@/hooks/web/useI18n';
@@ -33,56 +33,45 @@ import { usePermissionStore } from '@/store/modules/permission';
 import { useUserStore } from '@/store/modules/user';
 import { copyText } from '@/utils/copyTextToClipboard';
 
-export default defineComponent({
-  name: 'SettingFooter',
-  components: { CopyOutlined, RedoOutlined },
-  setup() {
-    const permissionStore = usePermissionStore();
-    const { prefixCls } = useDesign('setting-footer');
-    const { t } = useI18n();
-    const { createSuccessModal, createMessage } = useMessage();
-    const tabStore = useMultipleTabStore();
-    const userStore = useUserStore();
-    const appStore = useAppStore();
+defineOptions({ name: 'SettingFooter' });
 
-    function handleCopy() {
-      copyText(JSON.stringify(unref(appStore.getProjectConfig), null, 2), null);
+const permissionStore = usePermissionStore();
+const { prefixCls } = useDesign('setting-footer');
+const { t } = useI18n();
+const { createSuccessModal, createMessage } = useMessage();
+const tabStore = useMultipleTabStore();
+const userStore = useUserStore();
+const appStore = useAppStore();
 
-      createSuccessModal({
-        title: t('layout.setting.operatingTitle'),
-        content: t('layout.setting.operatingContent'),
-      });
-    }
-    function handleResetSetting() {
-      try {
-        appStore.setProjectConfig(defaultSetting);
-        const { colorWeak, grayMode } = defaultSetting;
-        updateSidebarBgColor();
-        updateColorWeak(colorWeak);
-        updateGrayMode(grayMode);
-        createMessage.success(t('layout.setting.resetSuccess'));
-      } catch (error: any) {
-        createMessage.error(error);
-      }
-    }
+function handleCopy() {
+  copyText(JSON.stringify(unref(appStore.getProjectConfig), null, 2), null);
 
-    function handleClearAndRedo() {
-      localStorage.clear();
-      appStore.resetAllState();
-      permissionStore.resetState();
-      tabStore.resetState();
-      userStore.resetState();
-      location.reload();
-    }
-    return {
-      prefixCls,
-      t,
-      handleCopy,
-      handleResetSetting,
-      handleClearAndRedo,
-    };
-  },
-});
+  createSuccessModal({
+    title: t('layout.setting.operatingTitle'),
+    content: t('layout.setting.operatingContent'),
+  });
+}
+function handleResetSetting() {
+  try {
+    appStore.setProjectConfig(defaultSetting);
+    const { colorWeak, grayMode } = defaultSetting;
+    updateSidebarBgColor();
+    updateColorWeak(colorWeak);
+    updateGrayMode(grayMode);
+    createMessage.success(t('layout.setting.resetSuccess'));
+  } catch (error: any) {
+    createMessage.error(error);
+  }
+}
+
+function handleClearAndRedo() {
+  localStorage.clear();
+  appStore.resetAllState();
+  permissionStore.resetState();
+  tabStore.resetState();
+  userStore.resetState();
+  location.reload();
+}
 </script>
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-setting-footer';

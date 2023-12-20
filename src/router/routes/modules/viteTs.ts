@@ -2,31 +2,31 @@ import { LAYOUT } from '@/router/constant';
 import type { AppRouteModule } from '@/router/types';
 
 const vite: AppRouteModule = {
-  path: '/app-vitejs',
-  name: 'vite',
+  path: '/app-vitets',
+  name: 'vite-ts',
   component: LAYOUT,
-  redirect: '/app-vitejs/',
+  redirect: '/app-vitets/',
   meta: {
-    orderNo: 10,
+    orderNo: 9,
     icon: 'ion:grid-outline',
-    title: 'vite',
+    title: 'vite-ts',
   },
   children: [
     {
       path: 'home',
-      name: 'viteHome',
-      component: () => import('@/views/vite/index.vue'),
+      name: 'vite-ts-home',
+      component: () => import('@/views/viteTs/index.vue'),
       meta: {
         // affix: true,
         title: 'Home',
       },
     },
     {
-      path: 'about',
-      name: 'viteAbout',
-      component: () => import('@/views/vite/index.vue'),
+      path: 'page2',
+      name: 'vite-ts-page2',
+      component: () => import('@/views/viteTs/index.vue'),
       meta: {
-        title: 'About',
+        title: 'page2',
       },
     },
   ],
