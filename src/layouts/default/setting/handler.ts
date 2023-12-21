@@ -1,8 +1,8 @@
 import { useRootSetting } from '@/hooks/setting/useRootSetting';
-import { updateDarkTheme } from '@/settings/theme/dark';
-import { updateHeaderBgColor, updateSidebarBgColor } from '@/settings/theme/updateBackground';
-import { updateColorWeak } from '@/settings/theme/updateColorWeak';
-import { updateGrayMode } from '@/settings/theme/updateGrayMode';
+import { updateDarkTheme } from '@/logics/theme/dark';
+import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground';
+import { updateColorWeak } from '@/logics/theme/updateColorWeak';
+import { updateGrayMode } from '@/logics/theme/updateGrayMode';
 import { useAppStore } from '@/store/modules/app';
 import { ProjectConfig } from '#/config';
 

@@ -25,10 +25,10 @@ import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useDesign } from '@/hooks/web/useDesign';
+import { listenerRouteChange } from '@/logics/mitt/routeChange';
 import { REDIRECT_NAME } from '@/router/constant';
 import { getAllParentPath } from '@/router/helper/menuHelper';
 import { getCurrentParentPath } from '@/router/menus';
-import { listenerRouteChange } from '@/router/mitt/routeChange';
 import { isFunction } from '@/utils/is';
 
 import BasicSubMenuItem from './components/BasicSubMenuItem.vue';

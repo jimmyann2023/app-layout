@@ -12,8 +12,8 @@ import { SvgIcon } from '@/components/Icon';
 import { ThemeEnum } from '@/enums/appEnum';
 import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { useDesign } from '@/hooks/web/useDesign';
-import { updateDarkTheme } from '@/settings/theme/dark';
-import { updateHeaderBgColor, updateSidebarBgColor } from '@/settings/theme/updateBackground';
+import { updateDarkTheme } from '@/logics/theme/dark';
+import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground';
 
 const { prefixCls } = useDesign('dark-switch');
 const { getDarkMode, setDarkMode, getShowDarkModeToggle } = useRootSetting();

@@ -100,8 +100,8 @@ import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 import { useDesign } from '@/hooks/web/useDesign';
 import { useI18n } from '@/hooks/web/useI18n';
 import { useGo } from '@/hooks/web/usePage';
+import { listenerRouteChange } from '@/logics/mitt/routeChange';
 import { getChildrenMenus, getCurrentParentPath, getShallowMenus } from '@/router/menus';
-import { listenerRouteChange } from '@/router/mitt/routeChange';
 import type { Menu } from '@/router/types';
 import { usePermissionStore } from '@/store/modules/permission';
 

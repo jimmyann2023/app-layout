@@ -1,6 +1,6 @@
 import '@/styles/index.less';
-import 'uno.css';
 import 'ant-design-vue/dist/reset.css';
+import 'uno.css';
 // Register icon sprite
 import 'virtual:svg-icons-register';
 
@@ -10,12 +10,12 @@ import { createApp } from 'vue';
 import { registerGlobComp } from '@/components/registerGlobComp';
 import { setupGlobDirectives } from '@/directives';
 import { setupI18n } from '@/locales/setupI18n';
+import { initAppConfigStore } from '@/logics/initAppConfig';
 import { router, setupRouter } from '@/router';
 import { setupRouterGuard } from '@/router/guard';
 import { setupStore } from '@/store';
 
 import App from './App.vue';
-import { initAppConfigStore } from './settings/initAppConfig';
 
 microApp.start({
   'disable-memory-router': true, // 关闭虚拟路由系统
