@@ -7,8 +7,8 @@ const vite: AppRouteModule = {
   component: LAYOUT,
   redirect: '/app-vitets/',
   meta: {
-    orderNo: 9,
-    icon: 'ion:grid-outline',
+    orderNo: 10,
+    icon: 'devicon-plain:vitest',
     title: 'vite-ts',
   },
   children: [

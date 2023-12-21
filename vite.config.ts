@@ -80,7 +80,7 @@ export default defineConfig(({ mode }) => {
         symbolId: 'icon-[dir]-[name]',
       }),
       Components({
-        dts: 'types/components.d.ts',
+        // dts: 'types/components.d.ts',
 
         resolvers: [
           AntDesignVueResolver({

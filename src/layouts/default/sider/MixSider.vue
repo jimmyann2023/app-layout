@@ -93,6 +93,7 @@ import { AppLogo } from '@/components/Application';
 import { ScrollContainer } from '@/components/Container';
 import Icon from '@/components/Icon/Icon.vue';
 import { SimpleMenu } from '@/components/SimpleMenu';
+import vClickOutside from '@/directives/clickOutside';
 import { SIDE_BAR_MINI_WIDTH, SIDE_BAR_SHOW_TIT_MINI_WIDTH } from '@/enums/appEnum';
 import { useGlobSetting } from '@/hooks/setting';
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting';

@@ -1,4 +1,5 @@
-import { LAYOUT } from '@/router/constant';
+import { RoleEnum } from '@/enums/roleEnum';
+import { getParentLayout, LAYOUT } from '@/router/constant';
 import type { AppRouteModule } from '@/router/types';
 
 const vite: AppRouteModule = {
@@ -8,7 +9,7 @@ const vite: AppRouteModule = {
   redirect: '/app-vitejs/',
   meta: {
     orderNo: 10,
-    icon: 'ion:grid-outline',
+    icon: 'file-icons:vite',
     title: 'vite-js',
   },
   children: [
@@ -31,10 +32,11 @@ const vite: AppRouteModule = {
     },
     {
       path: 'demo',
-      name: 'vite-js-demo',
-      // component: () => import('@/views/viteJs/index.vue'),
+      name: 'viteJsDemo',
+      component: () => getParentLayout('viteJsDemo'),
       meta: {
         title: 'demo',
+        roles: [RoleEnum.DEV, RoleEnum.SUPER],
       },
       children: [
         {
@@ -42,6 +44,7 @@ const vite: AppRouteModule = {
           name: 'vite-js-less',
           component: () => import('@/views/viteJs/index.vue'),
           meta: {
+            roles: [RoleEnum.DEV, RoleEnum.SUPER],
             title: 'Less',
           },
         },
@@ -51,6 +54,7 @@ const vite: AppRouteModule = {
           component: () => import('@/views/viteJs/index.vue'),
           meta: {
             title: 'Scss',
+            roles: [RoleEnum.DEV, RoleEnum.SUPER],
           },
         },
         {
@@ -59,6 +63,7 @@ const vite: AppRouteModule = {
           component: () => import('@/views/viteJs/index.vue'),
           meta: {
             title: 'unocss',
+            roles: [RoleEnum.DEV, RoleEnum.SUPER],
           },
         },
         {
@@ -67,6 +72,7 @@ const vite: AppRouteModule = {
           component: () => import('@/views/viteJs/index.vue'),
           meta: {
             title: 'vxetable',
+            roles: [RoleEnum.DEV, RoleEnum.SUPER],
           },
         },
         {
@@ -75,6 +81,7 @@ const vite: AppRouteModule = {
           // component: () => import('@/views/viteJs/index.vue'),
           meta: {
             title: 'jsx',
+            roles: [RoleEnum.DEV, RoleEnum.SUPER],
           },
           children: [
             {
@@ -83,6 +90,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'jsx',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
             {
@@ -91,6 +99,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'ref',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
             {
@@ -99,6 +108,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'if',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
             {
@@ -107,6 +117,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'on',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
             {
@@ -115,6 +126,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'model',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
             {
@@ -123,6 +135,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'bind',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
             {
@@ -131,6 +144,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'slot',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
             {
@@ -139,6 +153,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'emit-props',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
             {
@@ -147,6 +162,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'emit-model',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
             {
@@ -155,6 +171,7 @@ const vite: AppRouteModule = {
               component: () => import('@/views/viteJs/index.vue'),
               meta: {
                 title: 'emit-ref',
+                roles: [RoleEnum.DEV, RoleEnum.SUPER],
               },
             },
           ],

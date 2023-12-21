@@ -141,7 +141,7 @@ export const useUserStore = defineStore({
         username: 'admin',
         realName: 'Toms',
         avatar: '',
-        roles: [{ roleName: 'super admin', value: 'admim' }],
+        roles: [{ roleName: 'super admin', value: 'super' }],
       };
       const { roles = [] } = userInfo;
       if (isArray(roles)) {

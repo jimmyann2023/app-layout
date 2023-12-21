@@ -8,7 +8,7 @@ const vue3: AppRouteModule = {
   redirect: '/app-vue3/',
   meta: {
     orderNo: 20,
-    icon: 'ion:grid-outline',
+    icon: 'simple-icons:vuetify',
     title: 'vue3',
   },
   children: [

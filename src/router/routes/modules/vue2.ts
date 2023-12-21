@@ -8,7 +8,7 @@ const vue2: AppRouteModule = {
   redirect: '/app-vue2/index',
   meta: {
     orderNo: 10,
-    icon: 'ion:grid-outline',
+    icon: 'uil:vuejs',
     title: 'vue2',
   },
   children: [

@@ -135,8 +135,9 @@
     "front": "基于前端权限",
     "frontPage": "页面权限",
     "frontBtn": "按钮权限",
-    "frontTestA": "权限测试页A",
-    "frontTestB": "权限测试页B",
+    "frontTestA": "super 权限测试页A",
+    "frontTestB": "test 权限测试页B",
+    "frontTestC": "developer 权限测试页C",
     "back": "基于后台权限",
     "backPage": "页面权限",
     "backBtn": "按钮权限"

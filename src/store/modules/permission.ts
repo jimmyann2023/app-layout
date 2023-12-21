@@ -112,7 +112,6 @@ export const usePermissionStore = defineStore({
       let routes: AppRouteRecordRaw[] = [];
       const roleList = toRaw(userStore.getRoleList) || [];
       const { permissionMode = projectSetting.permissionMode } = appStore.getProjectConfig;
-
       // 路由过滤器 在 函数filter 作为回调传入遍历使用
       const routeFilter = (route: AppRouteRecordRaw) => {
         const { meta } = route;
@@ -162,10 +161,12 @@ export const usePermissionStore = defineStore({
         }
         return;
       };
-      console.log('权限路由模式', permissionMode);
+
+      console.log(permissionMode);
       switch (permissionMode) {
         // 角色权限
         case PermissionModeEnum.ROLE: {
+          console.log('权限路由模式', permissionMode);
           // 对非一级路由进行过滤
           routes = filter(asyncRoutes, routeFilter);
           // 对一级路由根据角色权限过滤

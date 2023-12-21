@@ -1,7 +1,8 @@
 module.exports = {
   env: {
+    node: true,
     browser: true,
-    es2021: true,
+    es6: true,
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -49,6 +50,8 @@ module.exports = {
     ],
     'space-before-function-paren': 'off',
 
+    'vue/attributes-order': 'error',
+    'vue/require-default-prop': 'off',
     'vue/script-setup-uses-vars': 'error',
     'vue/no-reserved-component-names': 'off',
     'vue/attributes-order': 'off',
@@ -116,8 +119,6 @@ module.exports = {
      */
     '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
 
-    'vue/attributes-order': 'error',
-    'vue/require-default-prop': 'off',
   },
   globals: { defineOptions: 'readonly', LabelValueOptions: true, ComponentRef: true },
 };
